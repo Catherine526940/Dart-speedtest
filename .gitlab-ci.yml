@@ -1,5 +1,6 @@
 before_script:  
  - set ANDROID_SDK_ROOT = "D:\Android\sdk"
+ - set-executionpolicy -executionpolicy unrestricted
 
 dev:
     script:
