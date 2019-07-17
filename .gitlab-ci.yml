@@ -3,8 +3,7 @@ before_script:
  - export PATH="D:\flutter\bin"
  - chmod a+x ./gradlew
 
+
 dev:
     script:
      - flutter build apk --release
-     - cd android
-     - bundle exec fastlane 
