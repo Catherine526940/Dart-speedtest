@@ -9,4 +9,4 @@ stages:
 dev:
     stage: build
     script:
-     - ./gradlew android:assembleDubg
+     - flutter build apk --release
