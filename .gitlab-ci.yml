@@ -1,17 +1,11 @@
-test app:
-  image: kattwinkel/flutter-android
-  stage: test
-  script:
-  - cd app
-  - flutter test
- 
-build app:
-  image: kattwinkel/flutter-android
-  stage: build
-  script:
-    - cd app
-    - flutter build apk
-  artifacts:
-    expire_in: 1 week
-    paths:
-    - app/build/app/outputs/apk/release/app-release.apk
+before_script:
+ - export ANDROID_HOME="D:\Android\sdk"
+ - chmod a+x ./gradlew
+
+stages:
+    - build
+
+dev:
+    stage: build
+    script:
+     - ./gradlew app:assembleDebug
