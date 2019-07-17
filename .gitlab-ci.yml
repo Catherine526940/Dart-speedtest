@@ -14,7 +14,7 @@ build-apk:
   # 该镜像已经包含了fastlane
   - fastlane android release
   # 要上传的包
-  -echo 'build finish'
+  - echo 'build finish'
   artifacts:
     name: "app-release-$CI_COMMIT_SHORT_SHA.apk"
     paths:
