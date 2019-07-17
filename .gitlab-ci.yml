@@ -9,7 +9,7 @@ test:android:
   stage: test
   script:
     - cd android
-    - ./gradlew -Pci --console=plain :app:testDebug
+    - ./gradlew app:assembleDebug 
 
 build:apk:
   stage: build
