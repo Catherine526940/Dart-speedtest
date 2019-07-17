@@ -3,4 +3,5 @@ before_script:
 
 dev:
     script:
+     - $ErrorActionPreference = "Stop"
      - flutter build apk --release
