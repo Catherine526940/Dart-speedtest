@@ -1,6 +1,6 @@
 image: "passsy/flutterw:0.1.0"
 
-before_script
+before_script:
  - ./flutterw doctor --verbose
  
 pr:
