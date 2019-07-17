@@ -1,5 +1,6 @@
 stages:
     - build
+    - test
 job1:
     # 是否开启 debug 模式
     # variables:
