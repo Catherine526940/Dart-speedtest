@@ -1,8 +1,17 @@
-image: "passsy/flutterw:0.1.0"
-
-before_script:
- - ./flutterw doctor --verbose
+test app:
+  image: kattwinkel/flutter-android
+  stage: test
+  script:
+  - cd app
+  - flutter test
  
-pr:
- script:
-  - ./ci/build_flutter.sh
+build app:
+  image: kattwinkel/flutter-android
+  stage: build
+  script:
+    - cd app
+    - flutter build apk
+  artifacts:
+    expire_in: 1 week
+    paths:
+    - app/build/app/outputs/apk/release/app-release.apk
