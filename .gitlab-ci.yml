@@ -1,5 +1,6 @@
 before_script:  
- - export ANDROID_HOME="/home/luckyxmobile/Android/Sdk"
+ - export ANDROID_HOME="D:\Android\sdk"
+ - export PATH="D:\flutter\bin"
  - chmod a+x ./gradlew
 
 stages:
