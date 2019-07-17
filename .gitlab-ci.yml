@@ -1,5 +1,4 @@
 before_script:  
- - $ErrorActionPreference = "Stop" 
  - set ANDROID_SDK_ROOT = "D:\Android\sdk"
 
 stages:
