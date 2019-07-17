@@ -1,6 +1,3 @@
-before_script:  
- - chmod a+x ./gradlew
-
 
 dev:
     script:
