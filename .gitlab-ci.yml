@@ -1,8 +1,33 @@
 before_script:  
  - set ANDROID_SDK_ROOT = "D:\Android\sdk"
 
-dev:
-    script:
-     - chcp 65001
-     - $ErrorActionPreference = "Stop"
-     - flutter build apk --release
+stages:
+  - test
+  - build
+
+test:android:
+  stage: test
+  script:
+    - cd android
+    - ./gradlew -Pci --console=plain :app:testDebug
+
+build:apk:
+  stage: build
+  script:
+    - flutter build apk
+  artifacts:
+    paths:
+      - build/app/outputs/apk
+
+build:bundle:
+  stage: build
+  script:
+    - flutter build appbundle
+  artifacts:
+    paths:
+      - build/app/outputs/bundle
+
+test:flutter:
+  stage: test
+  script:
+    - flutter test
