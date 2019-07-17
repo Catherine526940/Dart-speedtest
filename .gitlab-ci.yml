@@ -1,6 +1,4 @@
-before_script:
- - export ANDROID_HOME="D:\Android\sdk"
- - chmod a+x ./gradlew
+
 
 stages:
     - build
