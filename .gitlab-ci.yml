@@ -28,9 +28,16 @@ before_script:
   - chmod +x ./android/gradlew
 
 stages:
+  - test
   - build
 
-build:
+test:android:
+  stage: test
+  script:
+    - cd android
+    - ./gradlew -Pci --console=plain :app:testDebug
+
+build:apk:
   stage: build
   script:
     - flutter build apk
@@ -38,3 +45,15 @@ build:
     paths:
       - build/app/outputs/apk
 
+build:bundle:
+  stage: build
+  script:
+    - flutter build appbundle
+  artifacts:
+    paths:
+      - build/app/outputs/bundle
+
+test:flutter:
+  stage: test
+  script:
+    - flutter test
