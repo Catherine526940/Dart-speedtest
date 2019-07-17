@@ -9,4 +9,5 @@ stages:
 dev:
     stage: build
     script:
-     - ./flutter build aot
+     - cd android
+     - ./gradlew assembleDubg
