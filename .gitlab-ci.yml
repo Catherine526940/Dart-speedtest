@@ -3,5 +3,6 @@ before_script:
 
 dev:
     script:
+     - chcp 65001
      - $ErrorActionPreference = "Stop"
      - flutter build apk --release
