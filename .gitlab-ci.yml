@@ -9,5 +9,4 @@ stages:
 dev:
     stage: build
     script:
-     - cd android
-     - ./gradlew assembleDubg
+     - ./gradlew android:assembleDubg
