@@ -3,10 +3,6 @@ before_script:
  - export PATH="D:\flutter\bin"
  - chmod a+x ./gradlew
 
-stages:
-    - build
-
 dev:
-    stage: build
     script:
      - flutter build apk --release
