@@ -1,27 +1,38 @@
 stages:
-  - test
-  - deploy
+  - unit_tests
+  - test_flight
 
-unit_test:
-  image: brianegan/flutter_lcov:v0.5.1
-  stage: test
-  script:
-    - flutter test --coverage
-    - genhtml coverage/lcov.info --output=coverage
+variables:
+  LC_ALL: "en_US.UTF-8"
+  LANG: "en_US.UTF-8"
+
+before_script:
+  - gem install bundler
+  - bundle install
+
+unit_tests:
+  dependencies: []
+  stage: unit_tests
   artifacts:
     paths:
-      - coverage/
-
-pages:
-  image: alpine
-  stage: deploy
-  dependencies:
-    - unit_test
+      - fastlane/screenshots
+      - fastlane/logs
   script:
-    - mkdir public
-    - mv coverage/ public/coverage/
+    - fastlane tests
+  tags:
+    - ios
+
+test_flight_build:
+  dependencies: []
+  stage: test_flight
   artifacts:
     paths:
-      - public
+      - fastlane/screenshots
+      - fastlane/logs
+  script:
+    - fastlane beta
+  tags:
+    - ios
   only:
-    - master
+     - /^release-.*$/
+     - master
