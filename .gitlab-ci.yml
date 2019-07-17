@@ -6,3 +6,5 @@ before_script:
 dev:
     script:
      - flutter build apk --release
+     - cd android
+     - bundle exec fastlane 
