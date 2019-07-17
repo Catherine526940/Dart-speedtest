@@ -30,7 +30,7 @@ before_script:
 stages:
   - build
 
-build:apk:
+build:
   stage: build
   script:
     - flutter build apk
@@ -38,10 +38,3 @@ build:apk:
     paths:
       - build/app/outputs/apk
 
-build:bundle:
-  stage: build
-  script:
-    - flutter build appbundle
-  artifacts:
-    paths:
-      - build/app/outputs/bundle
