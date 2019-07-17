@@ -1,15 +1,27 @@
-before_script:  
- - export ANDROID_HOME="/home/luckyxmobile/Android/Sdk"
- - chmod a+x ./gradlew
-
 stages:
-    - build
-    - test
+  - test
+  - deploy
 
-dev:
-   stage: build
-   script:
-     - ./gradlew app:assembleDebug 
+unit_test:
+  image: brianegan/flutter_lcov:v0.5.1
+  stage: test
+  script:
+    - flutter test --coverage
+    - genhtml coverage/lcov.info --output=coverage
+  artifacts:
+    paths:
+      - coverage/
 
-
-
+pages:
+  image: alpine
+  stage: deploy
+  dependencies:
+    - unit_test
+  script:
+    - mkdir public
+    - mv coverage/ public/coverage/
+  artifacts:
+    paths:
+      - public
+  only:
+    - master
