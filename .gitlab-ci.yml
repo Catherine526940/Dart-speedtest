@@ -7,8 +7,6 @@ job1:
     stage: build
     tags:
         - flutter
-    only:
-        - develop
     script:
         - cd public
         - npm i
