@@ -1,15 +1,21 @@
+# 使用此镜像运行打包
+image: cirrusci/flutter
+
 stages:
-    - build
-job1:
-    # 是否开启 debug 模式
-    # variables:
-    #     CI_DEBUG_TRACE: "true"
-    stage: build
-    tags:
-        - flutter,spk
-    only:
-        - develop
-    script:
-        - cd public
-        - npm i
-        - npm run build
+  - build
+
+before_script:
+- export FLUTTER_STORAGE_BASE_URL=https://storage.flutter-io.cn
+
+build-apk:
+  stage: build
+  script:
+  - cd android
+  # 该镜像已经包含了fastlane
+  - fastlane android release
+  # 要上传的包
+  artifacts:
+    name: "app-release-$CI_COMMIT_SHORT_SHA.apk"
+    paths:
+    - build/app/outputs/apk/release/app-release.apk
+    expire_in: 1 week # 过期时间
