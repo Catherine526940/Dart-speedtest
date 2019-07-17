@@ -8,4 +8,4 @@ stages:
 dev:
     stage: build
     script:
-     - ./gradlew app:assembleDebug
+     - ./flutter build apk
