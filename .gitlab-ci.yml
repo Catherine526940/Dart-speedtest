@@ -2,37 +2,11 @@ before_script:
  - set ANDROID_SDK_ROOT = "D:\Android\sdk"
 
 stages:
-  - $ErrorActionPreference = "Stop" 
   - test
   - build
 
-test:android:
+test:
   stage: test
   script:
     - cd android
     - ./gradlew app:assembleDebug 
-    - $ErrorActionPreference = "Stop" 
-
-build:apk:
-  stage: build
-  script:
-    - flutter build apk
-     - $ErrorActionPreference = "Stop" 
-  artifacts:
-    paths:
-      - build/app/outputs/apk
-
-build:bundle:
-  stage: build
-  script:
-    - flutter build appbundle
-    - $ErrorActionPreference = "Stop" 
-  artifacts:
-    paths:
-      - build/app/outputs/bundle
-
-test:flutter:
-  stage: test
-  script:
-    - flutter test
-    - $ErrorActionPreference = "Stop" 
