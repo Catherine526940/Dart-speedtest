@@ -15,7 +15,7 @@ class MyApp extends StatelessWidget{
             alignment: Alignment.center,
             width: 500.0,
             height: 400,
-            color: Colors.red,
+            : Colors.red,
           ),
         ),
       ),
