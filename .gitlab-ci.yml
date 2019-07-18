@@ -13,4 +13,5 @@ test:
 build:
   stage: build
   script:
-    - flutter doctor && flutter -v build apk
+    - flutter doctor 
+    - flutter -v build apk
