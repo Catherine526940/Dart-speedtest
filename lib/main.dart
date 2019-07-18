@@ -11,8 +11,8 @@ class MyApp extends StatelessWidget{
       home: Scaffold(
         body: Center(
           child: Container(
-            child: new Text('hello', style: TextStyle(fontSize: 40.0))
-            : Alignment.center,
+            child: new Text('hello', style: TextStyle(fontSize: 40.0)),
+            alignment: Alignment.center,
             width: 500.0,
             height: 400,
             color: Colors.red,
