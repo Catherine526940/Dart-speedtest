@@ -10,3 +10,7 @@ test:
   script:
     - cd android
     - ./gradlew app:assembleDebug 
+build:
+  stage: build
+  script:
+    - ./flutter build apk
