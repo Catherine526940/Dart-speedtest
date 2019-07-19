@@ -1,6 +1,6 @@
 before_script:  
  - export ANDROID_HOME="/home/luckyxmobile/Android/Sdk"
- - chmod a+x ./android
+ - chmod a+x ./android/gradlew
 stages:
     - build
 
