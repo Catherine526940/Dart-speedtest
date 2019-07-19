@@ -1,10 +1,10 @@
 before_script:  
  - export ANDROID_HOME="/home/luckyxmobile/Android/Sdk"
-
+ - chmod a+x ./gradlew
 stages:
     - build
 
 dev:
    stage: build
    script:
-     - flutter build apk
+     - ./gradlew android:assembleDebug
