@@ -7,4 +7,4 @@ stages:
 dev:
    stage: build
    script:
-     - ./flutter build apk
+     - flutter build apk
