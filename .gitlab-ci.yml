@@ -8,5 +8,4 @@ stages:
 dev:
    stage: build
    script:
-     - cd ./android
-     - ./gradlew app:assembleDebug 
+     - ./gradlew android:assembleDebug 
