@@ -1,17 +1,12 @@
 before_script:  
- - set ANDROID_SDK_ROOT = "D:\Android\sdk"
+ - export ANDROID_HOME="/home/luckyxmobile/Android/Sdk"
+ - chmod a+x ./gradlew
 
 stages:
-  - test
-  - build
+    - build
 
-test:
-  stage: test
-  script:
-    - cd android
-    - ./gradlew app:assembleDebug 
-build:
-  stage: build
-  script:
-    - flutter doctor 
-    - flutter -v build apk
+dev:
+   stage: build
+   script:
+     - cd android
+     - ./gradlew app:assembleDebug 
