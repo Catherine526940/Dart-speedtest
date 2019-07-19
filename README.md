@@ -1,6 +1,6 @@
 # speedTest
 
-A new Flutter application.
+A new Flutter application to test Internet speed
 
 ## Let's start
 
