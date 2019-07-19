@@ -2,12 +2,7 @@ import 'package:flutter/material.dart';
 import 'tabs/Speed.dart';
 import 'tabs/Setting.dart';
 import 'tabs/History.dart';
-import 'package:app01/main1.dart';
-
- 
-
-
-
+import '../main1.dart';
 
 class Tap extends StatefulWidget {
   Tap({Key key}) : super(key: key);
