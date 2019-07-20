@@ -1,14 +1,28 @@
 import 'package:flutter/material.dart';
 
-class BODY1Page extends StatelessWidget {
+class SpeedPage extends StatelessWidget {
+  const SpeedPage({Key key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
-    return Container(
+    return Scaffold(
+      appBar: AppBar(
+          backgroundColor: Color.fromRGBO(21, 20, 36, 1),
+          title: Center(
+            child: Text(
+              'S P E E D T E X T',
+              style: TextStyle(color: Color.fromRGBO(78, 201, 176, 1)),
+            ),
+          )
+      ),
+      body:Container(
         width: 540,
         height: 960,
         color: Color.fromRGBO(25, 26, 47, 1),
-        child: NEIBU());
-  }
+        child: NEIBU()
+        )
+    );
+  }  
 }
 
 class NEIBU extends StatelessWidget {
