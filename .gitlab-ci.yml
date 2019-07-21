@@ -1,5 +1,7 @@
 before_script:  
+ - export PATH=`pwd`/flutter/bin:$PATH
  - chmod a+x ./android/gradlew
+ 
 stages:
     - build
 
