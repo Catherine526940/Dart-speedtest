@@ -1,7 +1,10 @@
+before_script:  
+ - cd ./android
+ - chmod a+x ./android/gradlew
 stages:
     - build
 
 dev:
    stage: build
    script:
-     - flutter build apk
+     - ./gradlew app:assembleDebug
