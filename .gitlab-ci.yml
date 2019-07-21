@@ -1,5 +1,3 @@
-before_script:  
- - chmod a+x ./android/gradlew
 stages:
     - build
 
