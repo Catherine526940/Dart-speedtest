@@ -1,5 +1,6 @@
 before_script:  
  - export PATH=`pwd`/flutter/bin:$PATH
+ - chattr -i /home/flutter/bin/cache/lockfile
  - chmod a+r /home/flutter/bin/cache/lockfile
  - chmod a+x ./android/gradlew
  
