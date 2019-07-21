@@ -1,5 +1,4 @@
 before_script:  
- - cd ./android
  - chmod a+x ./android/gradlew
 stages:
     - build
@@ -7,4 +6,5 @@ stages:
 dev:
    stage: build
    script:
+     - cd android
      - ./gradlew app:assembleDebug
