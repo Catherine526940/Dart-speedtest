@@ -1,6 +1,6 @@
 before_script:  
  - export PATH=`pwd`/flutter/bin:$PATH
- - chmod a+rwx /home/flutter/bin/cache/lockfile
+ - chmod a+r /home/flutter/bin/cache/lockfile
  - chmod a+x ./android/gradlew
  
 stages:
