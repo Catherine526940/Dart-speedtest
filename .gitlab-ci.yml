@@ -1,47 +1,9 @@
-image: ubuntu:18.04
-before_script:
-  - export ANDROID_HOME=/opt/android-sdk
-  - export PATH=/opt/android-sdk/tools/bin:/opt/flutter/bin:/opt/flutter/bin/cache/dart-sdk/bin:$PATH
-  - export PUB_HOSTED_URL=https://pub.flutter-io.cn
-  - export FLUTTER_STORAGE_BASE_URL=https://storage.flutter-io.cn
-  - apt-get -qq update --yes
-  - apt-get -qq -y install --no-install-recommends curl git lib32stdc++6 openjdk-8-jdk-headless unzip > /dev/null
-  - apt-get -qq -y install lcov > /dev/null
-#   - apt-get --purge autoremove
-#   - apt-get autoclean
-  - curl -s -O https://dl.google.com/android/repository/sdk-tools-linux-4333796.zip > /dev/null
-  - mkdir /opt/android-sdk
-  - unzip  -qq sdk-tools-linux-4333796.zip -d /opt/android-sdk
-  - rm sdk-tools-linux-4333796.zip
-  - git clone -b master https://github.com/flutter/flutter.git /opt/flutter &> /dev/null
-  - mkdir ~/.android
-  - echo 'count=0' > ~/.android/repositories.cfg
-    #使用set +o pipefail解决yes命令导致的pipeline失败，也即忽略pipeline错误
-  - set +o pipefail
-  - yes | sdkmanager --licenses > /dev/null
-  - sdkmanager "tools" "build-tools;28.0.3" "platforms;android-28" "platform-tools" > /dev/null
-  - yes | sdkmanager --licenses > /dev/null
-  - which flutter
-  - flutter doctor -v
-  - set -o pipefail
- 
- 
 stages:
-  - build
- 
-# 定义 job
-job1:
-  stage: build
-  script:
-    - echo "I am job1"
-    - flutter packages get
-    - flutter test --coverage
-    - genhtml -o coverage coverage/lcov.info
-    - flutter build apk
-  cache:
-    key: "$CI_COMMIT_REF_SLUG"
-    paths:
-      - /opt/android-sdk
-      - /opt/flutter
-      - /var/cache
-
+    - build
+dev:
+   stage: build
+   script:
+     - flutter packages get
+     - flutter test --coverage
+     - genhtml -o coverage coverage/lcov.info
+     - flutter build aot
