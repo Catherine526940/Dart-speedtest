@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'pages/history.dart';
 import 'pages/speed.dart';
+import 'pages/setting.dart';
 
 void main() => runApp(MyApp());
 
@@ -14,11 +15,13 @@ class _MyAppState extends State<MyApp> {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      debugShowCheckedModeBanner: false,
+      debugShowCheckedModeBanner: false, 
       home: HomeTown()
-    );
+      );
   }
 }
+
+
 
 class HomeTown extends StatelessWidget {
   const HomeTown({Key key}) : super(key: key);
@@ -34,13 +37,12 @@ class HomeTown extends StatelessWidget {
               style: TextStyle(color: Color.fromRGBO(78, 201, 176, 1)),
             ),
           )),
-      body: 
-      Container(
-        color: Color.fromRGBO(21, 20, 36, 1),
+      body: Container(
+        color: Color.fromRGBO(21, 20, 36, 0.99),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.end,
           children: <Widget>[
-
+            
             //上面的go,圆形盘
             Container(
               child: Container(
@@ -62,8 +64,7 @@ class HomeTown extends StatelessWidget {
                   padding: EdgeInsets.all(66.5),
                   splashColor: Color.fromRGBO(78, 201, 176, 0.7), //水波纹颜色
                   shape: CircleBorder(
-                      side: BorderSide(
-                          color: Color.fromRGBO(21, 20, 36, 1))), 
+                      side: BorderSide(color: Color.fromRGBO(21, 20, 36, 1))),
                   onPressed: () {
                     Navigator.of(context).push(
                         MaterialPageRoute(builder: (context) => SpeedPage()));
@@ -80,9 +81,9 @@ class HomeTown extends StatelessWidget {
               ),
             ),
 
-            SizedBox(height: 80.0),
+            SizedBox(height: 20.0),
 
-            //中间的数据，位置啊，热点类型啊三个
+            //中间的数据，位置啊，热点类型啊四个
             Container(
               padding: EdgeInsets.fromLTRB(30.0, 60.0, 0.0, 0.0),
               child: Column(
@@ -101,7 +102,7 @@ class HomeTown extends StatelessWidget {
                         ),
                       ),
                       Text(
-                        "Type:",
+                        "Type:  wifi",
                         style: TextStyle(
                           color: Colors.white,
                           fontSize: 20.0,
@@ -110,7 +111,7 @@ class HomeTown extends StatelessWidget {
                       )
                     ],
                   ),
-
+                  SizedBox(height:15),
                   Row(
                     children: <Widget>[
                       Container(
@@ -122,7 +123,7 @@ class HomeTown extends StatelessWidget {
                         padding: EdgeInsets.only(right: 10.0),
                       ),
                       Text(
-                        "Server Name:",
+                        "Server Name:  chinese",
                         style: TextStyle(
                           color: Colors.white,
                           fontSize: 20.0,
@@ -131,6 +132,7 @@ class HomeTown extends StatelessWidget {
                       )
                     ],
                   ),
+                  SizedBox(height:15),
                   Row(
                     children: <Widget>[
                       Container(
@@ -142,7 +144,31 @@ class HomeTown extends StatelessWidget {
                         padding: EdgeInsets.only(right: 10.0),
                       ),
                       Text(
-                        "IP:",
+                        "IP:  127.192.4.12",
+                        style: TextStyle(
+                          color: Colors.white,
+                          fontSize: 20.0,
+                          fontWeight: FontWeight.w100,
+                        ),
+                      )
+                    ],
+                  ),
+                  SizedBox(height:15),
+                  Row(
+                    children: <Widget>[
+                      SizedBox(
+                        height: 50,
+                      ),
+                      Container(
+                        child: Icon(
+                          Icons.location_on,
+                          color: Colors.white,
+                          size: 35.0,
+                        ),
+                        padding: EdgeInsets.only(right: 10.0),
+                      ),
+                      Text(
+                        "Location:  kaifeng",
                         style: TextStyle(
                           color: Colors.white,
                           fontSize: 20.0,
@@ -155,7 +181,7 @@ class HomeTown extends StatelessWidget {
               ),
             ),
 
-            SizedBox(height: 60),
+            SizedBox(height: 30),
 
             //底部
             Row(
@@ -179,12 +205,12 @@ class HomeTown extends StatelessWidget {
                       color: Colors.grey,
                     ),
                     shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(50)), //加了一个小圆角
+                        borderRadius: BorderRadius.circular(0)), //加了一个小圆角
                     onPressed: () {
                       Navigator.of(context).push(
                           MaterialPageRoute(builder: (context) => SpeedPage()));
                     },
-                    color: Colors.black,
+                    color: Color.fromRGBO(21, 20, 36, 1),
                   ),
                 ),
                 Container(
@@ -205,12 +231,12 @@ class HomeTown extends StatelessWidget {
                       color: Colors.grey,
                     ),
                     shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(50)), //加了一个小圆角
+                        borderRadius: BorderRadius.circular(0)), //加了一个小圆角
                     onPressed: () {
                       Navigator.of(context).push(MaterialPageRoute(
                           builder: (context) => HistoryPage()));
                     },
-                    color: Colors.black,
+                    color: Color.fromRGBO(21, 20, 36, 1),
                   ),
                 ),
                 Container(
@@ -231,35 +257,23 @@ class HomeTown extends StatelessWidget {
                       color: Colors.grey,
                     ),
                     shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(50)), //加了一个小圆角
+                        borderRadius: BorderRadius.circular(0)), //加了一个小圆角
                     onPressed: () {
                       Navigator.of(context).push(MaterialPageRoute(
-                          builder: (context) => HistoryPage()));
+                          builder: (context) => SettingPage()));
                     },
-                    color: Colors.black,
+                    color: Color.fromRGBO(21, 20, 36, 1),
                   ),
                 ),
               ],
-            ),
-            SizedBox(height: 5)
+            ), 
+            SizedBox(height: 1)
           ],
-          
         ),
       ),
     );
   }
 }
-
-
-
-
-
-
-
-
-
-
-
 
 //定义两个数组，供上边调用
 Widget goSection = Container(
@@ -356,7 +370,6 @@ Widget textSection = Container(
           )
         ],
       ),
-      
     ],
   ),
 );
