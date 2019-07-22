@@ -15,13 +15,13 @@ class _HistoryPageState extends State<HistoryPage> {
   Widget build(BuildContext context) {
      return Scaffold(
         appBar: AppBar(
+          centerTitle: true,
             backgroundColor: Color.fromRGBO(21, 20, 36, 1),
-            title: Center(
-              child: Text(
-                'H I S T O R Y         ',
-                style: TextStyle(color: Color.fromRGBO(78, 201, 176, 1)),
+            title: Text(
+                'H I S T O R Y',
+                style: TextStyle(fontWeight: FontWeight.w900,color: Color.fromRGBO(78, 201, 176, 1)),
               ),
-            )),
+            ),
         body: Column(
           children: <Widget>[
             GestureDetector(
@@ -98,7 +98,7 @@ class _HistoryPageState extends State<HistoryPage> {
                     ),
                     splashColor: Color.fromRGBO(78, 201, 176, 0.7), //水波纹颜色
                     icon: Icon(
-                      Icons.shutter_speed,
+                      Icons.network_check,
                       size: 40,
                       color: Colors.grey,
                     ),
@@ -152,7 +152,7 @@ class _HistoryPageState extends State<HistoryPage> {
                     splashColor: Color.fromRGBO(78, 201, 176, 0.7), //水波纹颜色
                     icon: Icon(
                       Icons.settings,
-                      size: 42,
+                      size: 40,
                       color: Colors.grey,
                     ),
                     shape: RoundedRectangleBorder(

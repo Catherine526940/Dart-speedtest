@@ -8,13 +8,13 @@ class SpeedPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        centerTitle: true,
           backgroundColor: Color.fromRGBO(21, 20, 36, 1),
-          title: Center(
-            child: Text(
+          title:  Text(
               'S P E E D T E S T',
-              style: TextStyle(color: Color.fromRGBO(78, 201, 176, 1)),
+              style: TextStyle(fontWeight: FontWeight.w900,color: Color.fromRGBO(78, 201, 176, 1)),
             ),
-          )
+          
       ),
       body:Container(
         width: 540,
@@ -32,100 +32,119 @@ class NEIBU extends StatelessWidget {
     return Column(
       children: <Widget>[
         Row(
-          mainAxisAlignment: MainAxisAlignment.start,
+          mainAxisAlignment: MainAxisAlignment.spaceAround,
           children: <Widget>[
-            Expanded(
-              flex: 1,
-              child: Center(
-                  child: Row(
-                children: <Widget>[
-                  Text('             '),
-                  Icon(
+            Row(
+              children: <Widget>[
+             Container(
+               height: 50.0,
+                 child:Icon(
                     Icons.file_download,
-                    color: Colors.grey,
-                    size: 30,
+                    color: Color(0xff0EFEF7),
+                    size: 25,
                   ),
-                  Stack(
-                    children: <Widget>[
-                      Align(
-                        alignment: Alignment(0, 0),
-                        child: Text(
-                          'D o w n l o a d',
-                          style: TextStyle(color: Colors.grey),
+                    alignment: Alignment(0, 0),
+                ),
+                  Text(
+                          'DOWNLOAD',
+                          style: TextStyle(
+                            color: Colors.grey,
+                            letterSpacing: 3.0,
+                            fontWeight: FontWeight.w800,
+                            ),
                         ),
-                      )
-                    ],
-                  ),
-                ],
-              )),
-            ),
-            Expanded(
-              flex: 1,
-              child: Center(
-                  child: Row(
-                children: <Widget>[
-                  Text('              '),
-                  Icon(
+                ]
+              ),
+           //upload
+            Row(
+              children: <Widget>[
+            Container(
+               height: 50.0,
+                  child:Icon(
                     Icons.file_upload,
-                    color: Colors.grey,
-                    size: 30,
+                    color: Color(0xffE775FF),
+                    size: 25,
                   ),
-                  Stack(
-                    children: <Widget>[
-                      Align(
-                        alignment: Alignment(-1, -1),
-                        child: Text(
-                          'U p l o a d',
-                          style: TextStyle(color: Colors.grey),
+                        alignment: Alignment(0, 0),
+            ),
+                      Text(
+                          'UPLOAD',
+                          style: TextStyle(
+                            color: Colors.grey,
+                            letterSpacing: 3.0,
+                            fontWeight: FontWeight.w800,
+                          ),
                         ),
-                      )
+                      
                     ],
-                  ),
-                ],
-              )),
-            )
+                  )
           ],
         ),
+ //测试数据row布局  
         Row(
+          mainAxisAlignment: MainAxisAlignment.spaceAround,
           children: <Widget>[
-            Text('                      '),
             Text(
-              ' 521 kb/s ',
-              style: TextStyle(color: Colors.white, fontSize: 15),
+              '521',
+              style: TextStyle(
+                color: Colors.white,
+                 fontSize: 30,
+                 fontWeight: FontWeight.w100,
+                 ),
             ),
-            Text('                                '),
             Text(
-              ' 520 kb/s ',
-              style: TextStyle(color: Colors.white, fontSize: 15),
+              '520',
+              style: TextStyle(
+                color: Colors.white,
+                 fontSize: 30,
+                 fontWeight: FontWeight.w100,
+                 ),
             ),
           ],
         ),
+  ////ping-jitter-loss布局
         Row(
           mainAxisAlignment: MainAxisAlignment.start,
           children: <Widget>[
+       //ping     
             Expanded(
               flex: 1,
               child: Center(
                 child: Container(
-                    width: 300,
+                   width: 300,
                     height: 100,
                     child: Stack(
                       children: <Widget>[
+             //Icon
                         Align(
-                          alignment: Alignment(-1, 0),
+                          alignment: Alignment(-0.9, 0),
                           child: Icon(
-                            Icons.language,
-                            size: 23,
+                            Icons.swap_horiz,
+                            size: 25,
                             color: Colors.blue,
                           ),
                         ),
+              //text_ping
                         Align(
-                            alignment: Alignment(0.67, 0),
+                            alignment: Alignment(-0.3, 0),
                             child: Text(
-                              'Ping 32 ms  ',
+                              'Ping',
+                              style:
+                                  TextStyle(fontSize: 15, color: Colors.grey),
+                            )
+                            
+                          ),
+               //text_--ms           
+                          Align(
+                            alignment: Alignment(0.8, 0),
+                            child: Text(
+                              '32 ms',
                               style:
                                   TextStyle(fontSize: 15, color: Colors.white),
-                            )),
+                            )
+                            
+                          ),
+              //'|'
                         Align(
                             alignment: Alignment(1, 0),
                             child: Text(
@@ -137,6 +156,7 @@ class NEIBU extends StatelessWidget {
                     )),
               ),
             ),
+   //jitter
             Expanded(
               flex: 1,
               child: Center(
@@ -145,25 +165,38 @@ class NEIBU extends StatelessWidget {
                     height: 100,
                     child: Stack(
                       children: <Widget>[
+                //Icon
                         Align(
                           alignment: Alignment(-0.95, 0),
                           child: Icon(
-                            Icons.network_check,
+                            Icons.graphic_eq,
                             size: 25,
-                            color: Colors.teal,
+                            color: Color(0xff11fff3),
                           ),
                         ),
+                //text_jitter   
                         Align(
-                            alignment: Alignment(1, 0.05),
+                            alignment: Alignment(-0.3,0),
                             child: Text(
-                              'Jitter 31 ms',
+                              'Jitter',
+                              style:
+                                  TextStyle(fontSize: 15, color: Colors.grey),
+                            )
+                          ),
+                //text_--ms
+                            Align(
+                            alignment: Alignment(0.8, 0),
+                            child: Text(
+                              '31 ms',
                               style:
                                   TextStyle(fontSize: 15, color: Colors.white),
-                            )),
+                            )
+                          ),
                       ],
                     )),
               ),
             ),
+    //Loss  
             Expanded(
               flex: 1,
               child: Center(
@@ -172,28 +205,42 @@ class NEIBU extends StatelessWidget {
                     height: 100,
                     child: Stack(
                       children: <Widget>[
+                //'|'
                         Align(
-                            alignment: Alignment(-0.8, 0),
+                            alignment: Alignment(-1, 0),
                             child: Text(
                               '|',
                               style:
                                   TextStyle(fontSize: 37, color: Colors.white),
-                            )),
+                            )
+                          ),
+                //Icon
                         Align(
-                          alignment: Alignment(-0.6, 0),
+                          alignment: Alignment(-0.7, 0),
                           child: Icon(
-                            Icons.import_export,
+                            Icons.multiline_chart,
                             size: 25,
                             color: Colors.orange,
                           ),
                         ),
+                //text_Loss
                         Align(
-                            alignment: Alignment(0.9, 0.05),
+                            alignment: Alignment(0, 0),
                             child: Text(
-                              'Loss 10 %',
+                              'Loss',
+                              style:
+                                  TextStyle(fontSize: 15, color: Colors.grey),
+                            )
+                          ),
+                //text_--%
+                          Align(
+                            alignment: Alignment(0.9, 0),
+                            child: Text(
+                              '0 %',
                               style:
                                   TextStyle(fontSize: 15, color: Colors.white),
-                            )),
+                            )
+                          ),
                       ],
                     )),
               ),
@@ -201,8 +248,8 @@ class NEIBU extends StatelessWidget {
           ],
         ),
         
-
-        SizedBox(height: 444),
+//////////
+        SizedBox(height: 414),
         //底部
             Row(
               mainAxisAlignment: MainAxisAlignment.start,
@@ -220,7 +267,7 @@ class NEIBU extends StatelessWidget {
                     ),
                     splashColor: Color.fromRGBO(78, 201, 176, 0.7), //水波纹颜色
                     icon: Icon(
-                      Icons.shutter_speed,
+                      Icons.network_check,
                       size: 40,
                       color: Colors.grey,
                     ),
@@ -272,7 +319,7 @@ class NEIBU extends StatelessWidget {
                     splashColor: Color.fromRGBO(78, 201, 176, 0.7), //水波纹颜色
                     icon: Icon(
                       Icons.settings,
-                      size: 42,
+                      size: 40,
                       color: Colors.grey,
                     ),
                     shape: RoundedRectangleBorder(
