@@ -4,5 +4,5 @@ stages:
 dev:
    stage: build
    script:
-     - flutter build aot
+     - flutter build apk
      - echo "success"
