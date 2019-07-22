@@ -1,11 +1,11 @@
+
+stages:
+    - buil
 before_script:
   # 解决中文乱码问题
   - chcp 65001
-stages:
-    - build
 dev:
    stage: build
    script:
-     - chcp 65001
      - flutter build apk
      - echo "success"
