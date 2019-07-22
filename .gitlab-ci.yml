@@ -1,8 +1,7 @@
-
 stages:
     - build
 
 dev:
    stage: build
    script:
-     - flutter build aot
+     - .\flutter build aot
