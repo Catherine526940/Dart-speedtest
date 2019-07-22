@@ -5,7 +5,7 @@ import 'pages/setting.dart';
 
 void main() => runApp(MyApp());
 
-class MyApp  StatefulWidget {
+class MyApp extends StatefulWidget {
   MyApp({Key key}) : super(key: key);
 
   _MyAppState createState() => _MyAppState();
