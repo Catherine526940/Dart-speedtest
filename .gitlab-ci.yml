@@ -4,6 +4,6 @@ stages:
 dev:
    stage: build
    script:
-     - cd C:\Users\Administrator\Desktop\GitLab-Runner\builds\XtWN7tA8\0\android\
+     - chcp 65001
      - flutter build apk
      - echo "success"
