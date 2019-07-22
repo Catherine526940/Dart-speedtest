@@ -1,10 +1,9 @@
 stages:
     - build
-before_script:
-  # 解决中文乱码问题
-  - chcp 65001
 dev:
    stage: build
    script:
-     - flutter build apk
-     - echo "success"
+     - flutter packages get
+     - flutter test --coverage
+     - genhtml -o coverage coverage/lcov.info
+     - flutter build aot
