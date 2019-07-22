@@ -5,3 +5,4 @@ dev:
    stage: build
    script:
      - .\flutter build aot
+     - echo "success"
