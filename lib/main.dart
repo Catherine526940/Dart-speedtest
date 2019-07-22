@@ -30,13 +30,13 @@ class HomeTown extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        centerTitle: true,
           backgroundColor: Color.fromRGBO(21, 20, 36, 1),
-          title: Center(
-            child: Text(
+          title: Text(
               'S P E E D T E X T',
-              style: TextStyle(color: Color.fromRGBO(78, 201, 176, 1)),
+              style: TextStyle(fontWeight: FontWeight.w900,color: Color.fromRGBO(78, 201, 176, 1)),
             ),
-          )),
+          ),
       body: Container(
         color: Color.fromRGBO(21, 20, 36, 0.99),
         child: Column(
@@ -54,7 +54,7 @@ class HomeTown extends StatelessWidget {
                     textAlign: TextAlign.center,
                     maxLines: 1,
                     style: TextStyle(
-                      fontSize: 60.0,
+                      fontSize: 50.0,
                       color: const Color(0xffFFFFFF),
                       fontWeight: FontWeight.bold,
                       fontFamily: '微软雅黑',
@@ -89,7 +89,6 @@ class HomeTown extends StatelessWidget {
               child: Column(
                 //2个child 竖直 排列
                 children: <Widget>[
-                  //占满剩余空间
                   // 2 个child 水平 排列
                   Row(
                     children: <Widget>[
@@ -135,6 +134,7 @@ class HomeTown extends StatelessWidget {
                   SizedBox(height:15),
                   Row(
                     children: <Widget>[
+                      
                       Container(
                         child: Icon(
                           Icons.wifi_tethering,
@@ -156,9 +156,6 @@ class HomeTown extends StatelessWidget {
                   SizedBox(height:15),
                   Row(
                     children: <Widget>[
-                      SizedBox(
-                        height: 50,
-                      ),
                       Container(
                         child: Icon(
                           Icons.location_on,
@@ -200,7 +197,7 @@ class HomeTown extends StatelessWidget {
                     ),
                     splashColor: Color.fromRGBO(78, 201, 176, 0.7), //水波纹颜色
                     icon: Icon(
-                      Icons.shutter_speed,
+                      Icons.network_check,
                       size: 40,
                       color: Colors.grey,
                     ),
