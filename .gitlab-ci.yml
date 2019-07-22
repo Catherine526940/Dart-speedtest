@@ -1,13 +1,8 @@
-before_script:  
- - export PATH=`pwd`/flutter/bin:$PATH
 
- - chmod a+x ./android/gradlew
- 
 stages:
     - build
 
 dev:
    stage: build
    script:
-     - cd android
-     - gradlew app:assembleDebug
+     - flutter build aot
