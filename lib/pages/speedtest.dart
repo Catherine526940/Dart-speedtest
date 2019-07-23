@@ -237,6 +237,78 @@ class NEIBU extends StatelessWidget {
                     )),
               ),
             ),
+
+        
+          ],
+        ),
+////////////////////////////////
+        SizedBox(height: 70),
+        Column(
+          children: <Widget>[
+            LinearProgressIndicator(
+              valueColor: AlwaysStoppedAnimation<Color>(Color.fromRGBO(78, 201, 176, 1)),
+              backgroundColor: Color(0xffC1FFC1),
+              ),
+            Padding(
+              padding: const EdgeInsets.symmetric(vertical: 5.0),
+            )
+          ],
+        ),
+        SizedBox(height: 10),
+  //////////////////row/////////////////
+        Row(
+  
+          mainAxisAlignment: MainAxisAlignment.spaceAround,
+                children: <Widget>[
+//步行
+                  Icon(
+                      Icons.directions_run,
+                      size: 20.0,
+                      color: Colors.white
+                    ),
+ //自行车
+                  Icon(
+                      Icons.directions_bike,
+                      size: 20.0,
+                      color: Colors.white
+                    ),
+//汽车
+                  Icon(
+                      Icons.directions_car,
+                      size: 20.0,
+                      color: Colors.white
+                    ),
+//高铁
+                  Icon(
+                      Icons.directions_railway,
+                      size: 20.0,
+                      color: Colors.white
+                    ),
+//airplane
+                    Icon(
+                      Icons.airplanemode_active,
+                      size: 20.0,
+                      color: Colors.white
+                    ),
+        ],
+       ) ,
+///////////////////////////////////retest////////////
+        SizedBox(height: 120),
+        Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: <Widget>[
+            RaisedButton(
+              child: Text("RETEST"),
+              color: Color.fromRGBO(78, 201, 176, 1),
+              textColor: Colors.white,
+              elevation: 10,
+              shape: RoundedRectangleBorder(
+                borderRadius:BorderRadius.circular(20) 
+                ),
+              onPressed: (){
+                print("retest");
+              },
+            )
           ],
         ),
       ],

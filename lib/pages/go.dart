@@ -57,7 +57,7 @@ class _GoPageState extends State<GoPage> {
 
             //中间的数据，位置啊，热点类型啊四个
             Container(
-              padding: EdgeInsets.fromLTRB(70.0, 70.0, 0.0, 60.0),
+              padding: EdgeInsets.fromLTRB(60.0, 70.0, 0.0, 100.0),
               child: Column(
                 //2个child 竖直 排列
                 children: <Widget>[
@@ -151,8 +151,7 @@ class _GoPageState extends State<GoPage> {
             ),
 
             
-            //文字到底部导航的距离可以把文字挤上去
-            SizedBox(height: 40,)
+           
 
           ],
         ),
