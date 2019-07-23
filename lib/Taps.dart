@@ -3,7 +3,7 @@ import 'pages/go.dart';
 import 'pages/history.dart';
 import 'pages/setting.dart';
 
-class Taps extends StatefulWidget {
+class Taps extends StatefulWidget { 
   Taps({Key key}) : super(key: key);
 
   _TapsState createState() => _TapsState();
