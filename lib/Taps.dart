@@ -11,12 +11,33 @@ class Taps extends StatefulWidget {
 
 class _TapsState extends State<Taps> {
   int _currentIndex=0;
-
   List _pageList=[
     GoPage(),
     HistoryPage(),
     SettingPage()
   ];
+
+void onPageChanged(int _currentIndex) {
+    setState(() {
+      print(1);
+      this._currentIndex = _currentIndex;
+    });
+  }
+
+
+ var _pageController = new PageController(initialPage: 1);
+  var pages = <Widget>[
+    GoPage(),
+    HistoryPage(),
+    SettingPage(),
+  ];
+
+
+void _onItemTapped(int index) {
+    //bottomNavigationBar 和 PageView 关联
+    _pageController.animateToPage(index,duration: const Duration(milliseconds: 300), curve: Curves.ease);
+  }
+
 
   @override
   Widget build(BuildContext context) {
@@ -30,14 +51,24 @@ class _TapsState extends State<Taps> {
             ),
           ),
 
-
-
-    body: this._pageList[this._currentIndex],
+    body:new PageView.builder(
+        onPageChanged: onPageChanged,
+        controller: _pageController,
+        itemCount: pages.length,
+        itemBuilder: (BuildContext context, int index) {
+          return pages.elementAt(_currentIndex);
+        },
+      ),
     backgroundColor: Color.fromRGBO(21, 20, 36, 1),
+
+
+  /*   body: this._pageList[this._currentIndex],
+    backgroundColor: Color.fromRGBO(21, 20, 36, 1), */
 
 
     bottomNavigationBar: BottomNavigationBar(
       currentIndex: this._currentIndex,
+      //onTap: _onItemTapped,
       onTap: (int index){
         setState(() {
           print(index);
@@ -52,7 +83,8 @@ class _TapsState extends State<Taps> {
       selectedItemColor: Color.fromRGBO(78, 201, 176, 1),
       backgroundColor: Color.fromRGBO(21, 20, 36, 1),
     ),
-
     );
   }
 }
+
+

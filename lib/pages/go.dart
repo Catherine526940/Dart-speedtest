@@ -57,7 +57,7 @@ class _GoPageState extends State<GoPage> {
 
             //中间的数据，位置啊，热点类型啊四个
             Container(
-              padding: EdgeInsets.fromLTRB(70.0, 70.0, 0.0, 100.0),
+              padding: EdgeInsets.fromLTRB(70.0, 70.0, 0.0, 60.0),
               child: Column(
                 //2个child 竖直 排列
                 children: <Widget>[
