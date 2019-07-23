@@ -39,24 +39,26 @@ class _HistoryPageState extends State<HistoryPage> {
         child: Container(
           height: 60,
           child: Row(
-          mainAxisAlignment: MainAxisAlignment.start,
-          children: <Widget>[
-            Text(
-              '  ',
-            ),
-            Icon(Icons.wifi, size: 30, color: Color(0xff11fff3)),
-            SizedBox(width: 40.0),
-            Text('07/13/19\n10:34', style: TextStyle(color: Colors.white)),
-            SizedBox(width: 40.0),
-            Text("232", style: TextStyle(color: Colors.white, fontSize: 25.0)),
-            SizedBox(width: 50.0),
-            Text("153", style: TextStyle(color: Colors.white, fontSize: 25.0)),
-          ],
-        ),
+            mainAxisAlignment: MainAxisAlignment.start,
+            children: <Widget>[
+              Text(
+                '  ',
+              ),
+              Icon(Icons.wifi, size: 30, color: Color(0xff11fff3)),
+              SizedBox(width: 40.0),
+              Text('07/13/19\n10:34', style: TextStyle(color: Colors.white)),
+              SizedBox(width: 40.0),
+              Text("232",
+                  style: TextStyle(color: Colors.white, fontSize: 25.0)),
+              SizedBox(width: 50.0),
+              Text("153",
+                  style: TextStyle(color: Colors.white, fontSize: 25.0)),
+            ],
+          ),
         ),
         onPressed: () {
-          Navigator.of(context)
-              .push(MaterialPageRoute(builder: (context) => HisDetailPage()));
+          Navigator.of(context).push(MaterialPageRoute(
+              builder: (context) => HisDetailPage(message1: '232',message2: '153',message3: '07/13/19 10:34',)));
         },
       ),
       //第二条
@@ -83,8 +85,8 @@ class _HistoryPageState extends State<HistoryPage> {
           ),
         ),
         onPressed: () {
-          Navigator.of(context)
-              .push(MaterialPageRoute(builder: (context) => HisDetailPage()));
+          Navigator.of(context).push(MaterialPageRoute(
+              builder: (context) => HisDetailPage(message1: '91.5',message2: '197',message3: '07/13/19 09:37',)));
         },
       ),
     ]);
