@@ -1,6 +1,6 @@
 before_script:
   # 解决中文乱码问题
-  - chcp 65001
+  - chcp 936
 stages:
     - build
 dev:
