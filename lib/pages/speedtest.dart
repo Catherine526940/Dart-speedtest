@@ -306,7 +306,7 @@ class NEIBU extends StatelessWidget {
                 borderRadius:BorderRadius.circular(20) 
                 ),
               onPressed: (){
-                print("retext");
+                print("retest");
               },
             )
           ],
