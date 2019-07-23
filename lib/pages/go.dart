@@ -14,7 +14,8 @@ class _GoPageState extends State<GoPage> {
         color: Color.fromRGBO(21, 20, 36, 0.99),
         child: Column(
           children: <Widget>[
-////////////////////////////////////////////////GO圆形按钮
+
+////////////////////////////////////////////////GO圆形按钮/////////
             Container(
               padding: EdgeInsets.only(top:80.0),
               child: Container(
@@ -55,7 +56,7 @@ class _GoPageState extends State<GoPage> {
                     ),
               ),
             ),
-////////////////////////////////////////////四行数据
+////////////////////////////////////////////四行数据////////////////////////////////////////
             Container(
               padding: EdgeInsets.fromLTRB(20.0,50.0,0.0,0.0),
               child: Column(
