@@ -242,7 +242,7 @@ class NEIBU extends StatelessWidget {
           ],
         ),
 ////////////////////////////////
-SizedBox(height: 70),
+        SizedBox(height: 70),
         Column(
           children: <Widget>[
             LinearProgressIndicator(
@@ -256,9 +256,9 @@ SizedBox(height: 70),
         ),
         SizedBox(height: 10),
   //////////////////row/////////////////
-      Row(
+        Row(
   
-        mainAxisAlignment: MainAxisAlignment.spaceAround,
+          mainAxisAlignment: MainAxisAlignment.spaceAround,
                 children: <Widget>[
 //步行
                   Icon(
@@ -273,13 +273,13 @@ SizedBox(height: 70),
                       color: Colors.white
                     ),
 //汽车
-                   Icon(
+                  Icon(
                       Icons.directions_car,
                       size: 20.0,
                       color: Colors.white
                     ),
 //高铁
-                   Icon(
+                  Icon(
                       Icons.directions_railway,
                       size: 20.0,
                       color: Colors.white
