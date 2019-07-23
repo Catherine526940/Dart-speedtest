@@ -13,30 +13,33 @@ class _GoPageState extends State<GoPage> {
     return Container(
         color: Color.fromRGBO(21, 20, 36, 0.99),
         child: Column(
-          mainAxisAlignment: MainAxisAlignment.end,
           children: <Widget>[
-            //上面的go,圆形盘
+
+////////////////////////////////////////////////GO圆形按钮/////////
             Container(
+              padding: EdgeInsets.only(top:80.0),
               child: Container(
-                height: 230.0,
-                width: 230.0,
+                height: 200.0,
+                width: 200.0,
                 child: RaisedButton(
                   child: Text(
                     'GO',
                     textAlign: TextAlign.center,
                     maxLines: 1,
                     style: TextStyle(
-                      fontSize: 50.0,
+                      fontSize: 40.0,
                       color: const Color(0xffFFFFFF),
                       fontWeight: FontWeight.bold,
                       fontFamily: '微软雅黑',
                       letterSpacing: 3.0,
                     ),
                   ),
-                  padding: EdgeInsets.all(66.5),
+
+                  padding: EdgeInsets.all(62),
                   splashColor: Color.fromRGBO(78, 201, 176, 0.7), //水波纹颜色
                   shape: CircleBorder(
-                      side: BorderSide(color: Color.fromRGBO(21, 20, 36, 1))),
+                      side: BorderSide(color: Color.fromRGBO(21, 20, 36, 1))
+                      ),
                   onPressed: () {
                     Navigator.of(context).push(
                         MaterialPageRoute(builder: (context) => SpeedtestPage()));
@@ -49,15 +52,13 @@ class _GoPageState extends State<GoPage> {
                     border:
                         new Border.all(width: 4.0, color: Color(0xff068586)),
                     color: Color.fromRGBO(21, 20, 36, 1),
-                    borderRadius: BorderRadius.circular(150)),
+                    borderRadius: BorderRadius.circular(150)
+                    ),
               ),
             ),
-
-            SizedBox(height: 20.0),
-
-            //中间的数据，位置啊，热点类型啊四个
+////////////////////////////////////////////四行数据////////////////////////////////////////
             Container(
-              padding: EdgeInsets.fromLTRB(60.0, 70.0, 0.0, 100.0),
+              padding: EdgeInsets.fromLTRB(20.0,50.0,0.0,0.0),
               child: Column(
                 //2个child 竖直 排列
                 children: <Widget>[
@@ -149,10 +150,8 @@ class _GoPageState extends State<GoPage> {
                 ],
               ),
             ),
-
+////////////////////////////////////////////////////////
             
-           
-
           ],
         ),
       );
