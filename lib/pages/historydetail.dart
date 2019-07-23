@@ -1,12 +1,9 @@
 import 'package:flutter/material.dart';
 
-class HisDetailPage extends StatefulWidget {
-  HisDetailPage({Key key}) : super(key: key);
+class HisDetailPage extends StatelessWidget {
 
-  _HisDetailPageState createState() => _HisDetailPageState();
-}
-
-class _HisDetailPageState extends State<HisDetailPage> {
+  String  message1,message2,message3;//下载，上传，日期
+  HisDetailPage({this.message1,this.message2,this.message3});
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -24,13 +21,13 @@ class _HisDetailPageState extends State<HisDetailPage> {
         margin: EdgeInsets.all(15.0),
         child: Column(
           children: <Widget>[
-            ListTile(
-              title: Text(
-                '            07/18/19,20:18',
+            SizedBox(height: 10,),
+            SizedBox(width: 50,),
+            Text(
+                this.message3,
                 style: TextStyle(
                     fontSize: 20.0, color: Color.fromRGBO(195, 195, 195, 1.0)),
               ),
-            ),
             Container(
               width: double.infinity,
               height: 2.0,
@@ -45,7 +42,7 @@ class _HisDetailPageState extends State<HisDetailPage> {
               leading: Icon(Icons.get_app,
                   size: 30.0, color: Color.fromRGBO(17, 255, 243, 1.0)),
               trailing: Text(
-                "330",
+                this.message1,
                 style: TextStyle(
                     fontSize: 45.0, color: Color.fromRGBO(195, 195, 195, 1.0)),
               ),
@@ -57,7 +54,7 @@ class _HisDetailPageState extends State<HisDetailPage> {
             ),
             ListTile(
               trailing: Text(
-                "--",
+                this.message2,
                 style: TextStyle(
                     fontSize: 45.0, color: Color.fromRGBO(195, 195, 195, 1.0)),
               ),
