@@ -13,11 +13,11 @@ class _GoPageState extends State<GoPage> {
     return Container(
         color: Color.fromRGBO(21, 20, 36, 0.99),
         child: Column(
+          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: <Widget>[
 
 ////////////////////////////////////////////////GO圆形按钮/////////
             Container(
-              padding: EdgeInsets.only(top:80.0),
               child: Container(
                 height: 200.0,
                 width: 200.0,
@@ -58,7 +58,7 @@ class _GoPageState extends State<GoPage> {
             ),
 ////////////////////////////////////////////四行数据////////////////////////////////////////
             Container(
-              padding: EdgeInsets.fromLTRB(20.0,50.0,0.0,0.0),
+              padding: EdgeInsets.fromLTRB(20.0,0.0,0.0,0.0),
               child: Column(
                 //2个child 竖直 排列
                 children: <Widget>[
