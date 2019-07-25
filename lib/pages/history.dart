@@ -188,7 +188,7 @@ class _HistoryPageState extends State<HistoryPage> {
               Expanded(child: Icon(Icons.wifi, size: 30, color: Color(0xff11fff3)),),   
               Expanded(child:Text('07/13/19\n10:34', style: TextStyle(color: Colors.white)),),
               Expanded(child:Text("$randomdata",
-                  style: TextStyle(color: Colors.white, fontSize: 25.0)),),,
+                  style: TextStyle(color: Colors.white, fontSize: 25.0)),),
               Expanded(child:Text("\t\t$randomdata1",
                   style: TextStyle(color: Colors.white, fontSize: 25.0)),),
             ],
