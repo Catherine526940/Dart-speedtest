@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'about.dart';
 
 class SettingPage extends StatefulWidget {
   SettingPage({Key key}) : super(key: key);
@@ -15,7 +16,7 @@ class _SettingPageState extends State<SettingPage> {
           //testing//////////////
           Container(
             alignment: Alignment(-1, 0),
-            padding: EdgeInsets.fromLTRB(10.0, 0.0, 0.0, 5.0),
+            padding: EdgeInsets.fromLTRB(10.0, 10.0, 0.0, 5.0),
             child: Text(
               'TESTING',
               style: TextStyle(
@@ -25,12 +26,12 @@ class _SettingPageState extends State<SettingPage> {
             ),
           ),
           //分割线///////////////
-          Container(
-            decoration: new BoxDecoration(
-                border: new Border(
-                    bottom: Divider.createBorderSide(context,
-                        width: 1.0, color: Colors.grey))),
-          ),
+          // Container(
+          //   decoration: new BoxDecoration(
+          //       border: new Border(
+          //           bottom: Divider.createBorderSide(context,
+          //               width: 1.0, color: Colors.grey))),
+          // ),
           //第一行///////////////
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceAround,
@@ -44,10 +45,9 @@ class _SettingPageState extends State<SettingPage> {
                   alignment: Alignment(0, 0),
                   decoration: new BoxDecoration(
                       border: new Border(
-                          bottom: Divider.createBorderSide(
-                    context,
-                    width: 3.0,
-                  ))),
+                          bottom: Divider.createBorderSide(context,
+                              width: 3.0,
+                              color: Color.fromRGBO(21, 20, 36, 1)))),
                   child: Text(
                     "Units",
                     style: TextStyle(
@@ -78,10 +78,9 @@ class _SettingPageState extends State<SettingPage> {
                   alignment: Alignment(0, 0),
                   decoration: new BoxDecoration(
                       border: new Border(
-                          bottom: Divider.createBorderSide(
-                    context,
-                    width: 3.0,
-                  ))),
+                          bottom: Divider.createBorderSide(context,
+                              width: 3.0,
+                              color: Color.fromRGBO(21, 20, 36, 1)))),
                   child: Text(
                     "MB/s",
                     style: TextStyle(
@@ -96,10 +95,9 @@ class _SettingPageState extends State<SettingPage> {
                   alignment: Alignment(0, 0),
                   decoration: new BoxDecoration(
                       border: new Border(
-                          bottom: Divider.createBorderSide(
-                    context,
-                    width: 3.0,
-                  ))),
+                          bottom: Divider.createBorderSide(context,
+                              width: 3.0,
+                              color: Color.fromRGBO(21, 20, 36, 1)))),
                   child: Text(
                     "kB/s",
                     style: TextStyle(
@@ -115,7 +113,7 @@ class _SettingPageState extends State<SettingPage> {
             decoration: new BoxDecoration(
                 border: new Border(
                     bottom: Divider.createBorderSide(context,
-                        width: 1.0, color: Colors.grey))),
+                        width: 1.0, color: Color(0xff303030)))),
           ),
           //第二行/////////////////
           Row(
@@ -130,10 +128,9 @@ class _SettingPageState extends State<SettingPage> {
                   alignment: Alignment(0, 0),
                   decoration: new BoxDecoration(
                       border: new Border(
-                          bottom: Divider.createBorderSide(
-                    context,
-                    width: 3.0,
-                  ))),
+                          bottom: Divider.createBorderSide(context,
+                              width: 3.0,
+                              color: Color.fromRGBO(21, 20, 36, 1)))),
                   child: Text(
                     "Scale",
                     style: TextStyle(
@@ -164,10 +161,9 @@ class _SettingPageState extends State<SettingPage> {
                   alignment: Alignment(0, 0),
                   decoration: new BoxDecoration(
                       border: new Border(
-                          bottom: Divider.createBorderSide(
-                    context,
-                    width: 3.0,
-                  ))),
+                          bottom: Divider.createBorderSide(context,
+                              width: 3.0,
+                              color: Color.fromRGBO(21, 20, 36, 1)))),
                   child: Text(
                     "500",
                     style: TextStyle(
@@ -182,10 +178,9 @@ class _SettingPageState extends State<SettingPage> {
                   alignment: Alignment(0, 0),
                   decoration: new BoxDecoration(
                       border: new Border(
-                          bottom: Divider.createBorderSide(
-                    context,
-                    width: 3.0,
-                  ))),
+                          bottom: Divider.createBorderSide(context,
+                              width: 3.0,
+                              color: Color.fromRGBO(21, 20, 36, 1)))),
                   child: Text(
                     "1000",
                     style: TextStyle(
@@ -201,9 +196,37 @@ class _SettingPageState extends State<SettingPage> {
             decoration: new BoxDecoration(
                 border: new Border(
                     bottom: Divider.createBorderSide(context,
-                        width: 1.0, color: Colors.grey))),
+                        width: 1.0, color: Color(0xff303030)))),
           ),
           /////////////////////
+//关于
+          RaisedButton(
+            splashColor: Color.fromRGBO(78, 201, 176, 0.7), //水波纹颜色
+            color: Color.fromRGBO(21, 20, 36, 1),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.start,
+              children: <Widget>[
+                Text("ABOUT",
+                    style: TextStyle(
+                      fontSize: 20.0,
+                      fontWeight: FontWeight.w900,
+                    )),
+                SizedBox(height: 60)
+              ],
+            ),
+            onPressed: () {
+              Navigator.of(context)
+                  .push(MaterialPageRoute(builder: (context) => AaboutPage()));
+            },
+            textColor: Colors.white,
+          ),
+          //分割线
+          // Container(
+          //   decoration: new BoxDecoration(
+          //       border: new Border(
+          //           bottom: Divider.createBorderSide(context,
+          //               width: 1.0, color: Color(0xff303030)))),
+          // ),
         ],
       ),
     );
