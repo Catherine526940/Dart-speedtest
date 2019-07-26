@@ -11,326 +11,92 @@ class HistoryPage extends StatefulWidget {
 
 class _HistoryPageState extends State<HistoryPage> {
 //产生的随机数，本页面中只定义四个，即为前两个button上的数据。
-  var randomdata=Random().nextInt(200);
-  var randomdata1=Random().nextInt(200);
-  var randomdata2=Random().nextInt(200);
-  var randomdata3=Random().nextInt(200);
-  
+
   @override
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
     final height = size.height;
-  return Column(children: <Widget>[
-    //最上面哪一行，（title)
-            Row(children: <Widget>[ 
-            Expanded(child:Text('\t\tType', style: TextStyle(color: Colors.white, fontSize: 20)),),
-            Expanded(child: Text('Date', style: TextStyle(color: Colors.white, fontSize: 20)),),
-            Icon(Icons.file_download, color: Color(0xff11fff3)),
-            Expanded(child:  Text('Mbps', style: TextStyle(color: Colors.white, fontSize: 20)),),
-            Icon(Icons.file_upload, color: Color(0xffd86fff)),
-            Expanded(child: Text('Mbps', style: TextStyle(color: Colors.white, fontSize: 20)),),
-            Text('\n'),
-            Text('\n'),
-            Text('\n'),
-           // SizedBox(height: 25.0),
-                ]
-            ),
-          //下拉列表框，因为在这里给它高度为500，可能会有一些问题，暂时没有找到解决方法：
-          Container(
-          height: height*2.85/ 4,
+    return Column(children: <Widget>[
+      //最上面哪一行，（title)
+      Row(children: <Widget>[
+        Expanded(
+          child: Text('\t\tType',
+              style: TextStyle(color: Colors.white, fontSize: 20)),
+        ),
+        Expanded(
           child:
-          ListView(
-          children: <Widget>[
-//first button:
-        RaisedButton(
-        color: Color.fromRGBO(21, 20, 36, 1),
-        splashColor: Color.fromRGBO(78, 201, 176, 0.7), //水波纹颜色
-        child: Container( 
-            height: 55,
-            child: Row(
-            mainAxisAlignment: MainAxisAlignment.start,
-            children: <Widget>[
-              Icon(Icons.wifi, size: 30, color: Color(0xff11fff3)),   
-             Text('\t\t\t\t\t\t\t'),
-              Expanded(child:Text('07/13/19\n10:34', style: TextStyle(color: Colors.white)),),
-              Expanded(child:Text("$randomdata2",
-                  style: TextStyle(color: Colors.white, fontSize: 25.0)),),
-              Expanded(child:Text("\t\t$randomdata3",
-                  style: TextStyle(color: Colors.white, fontSize: 25.0)),),
-            ],
-          ),
+              Text('Date', style: TextStyle(color: Colors.white, fontSize: 20)),
         ),
-              onPressed: () {
-              Navigator.of(context).push(MaterialPageRoute(
-              builder: (context) => HisDetailPage(message1: '232',message2: '153',message3: '07/13/19 10:34',)));
-              },
-             ),       
-//second button:
-        RaisedButton(
-        color: Color.fromRGBO(21, 20, 36, 1),
-        splashColor: Color.fromRGBO(78, 201, 176, 0.7), //水波纹颜色
-        child: Container( 
-            height: 55,
-            child: Row(
-            mainAxisAlignment: MainAxisAlignment.start,
-            children: <Widget>[
-              Icon(Icons.wifi, size: 30, color: Color(0xff11fff3)),   
-             Text('\t\t\t\t\t\t\t'),
-              Expanded(child:Text('07/13/19\n10:34', style: TextStyle(color: Colors.white)),),
-              Expanded(child:Text("$randomdata3",
-                  style: TextStyle(color: Colors.white, fontSize: 25.0)),),
-              Expanded(child:Text("\t\t$randomdata2",
-                  style: TextStyle(color: Colors.white, fontSize: 25.0)),),
-            ],
-          ),
+        Icon(Icons.file_download, color: Color(0xff11fff3)),
+        Expanded(
+          child: Text('Mbps/s',
+              style: TextStyle(color: Colors.white, fontSize: 20)),
         ),
-              onPressed: () {
-              Navigator.of(context).push(MaterialPageRoute(
-              builder: (context) => HisDetailPage(message1: '232',message2: '153',message3: '07/13/19 10:34',)));
-              },
-             ),    
-//button:
-        RaisedButton(
-        color: Color.fromRGBO(21, 20, 36, 1),
-        splashColor: Color.fromRGBO(78, 201, 176, 0.7), //水波纹颜色
-        child: Container( 
-            height: 55,
-            child: Row(
-            mainAxisAlignment: MainAxisAlignment.start,
-            children: <Widget>[
-              Icon(Icons.wifi, size: 30, color: Color(0xff11fff3)),   
-             Text('\t\t\t\t\t\t\t'),
-              Expanded(child:Text('07/13/19\n10:34', style: TextStyle(color: Colors.white)),),
-              Expanded(child:Text("$randomdata",
-                  style: TextStyle(color: Colors.white, fontSize: 25.0)),),
-              Expanded(child:Text("\t\t$randomdata1",
-                  style: TextStyle(color: Colors.white, fontSize: 25.0)),),
-            ],
-          ),
+        Icon(Icons.file_upload, color: Color(0xffd86fff)),
+        Expanded(
+          child: Text('Mbps/s',
+              style: TextStyle(color: Colors.white, fontSize: 20)),
         ),
-              onPressed: () {
-              Navigator.of(context).push(MaterialPageRoute(
-              builder: (context) => HisDetailPage(message1: '232',message2: '153',message3: '07/13/19 10:34',)));
-              },
-             ),     
-//button:
-       RaisedButton(
+        Text('\n'),
+        Text('\n'),
+        Text('\n'),
+        // SizedBox(height: 25.0),
+      ]),
+
+      
+      Container(
+        height: height * 2.90 / 4,
+        child: ListView(children: _getListData(context)),
+      ),
+    ]);
+  }
+}
+_getListData(BuildContext context) {
+  List<Widget> widgets = [];
+  for (int i = 0; i < 50; i++) {
+    int randomdata1 = Random().nextInt(300);
+    int randomdata2 = Random().nextInt(300);
+    int randomdata3 = Random().nextInt(2019);
+    widgets.add(new Padding(
+      padding: new EdgeInsets.fromLTRB(5, 0, 5, 2),
+      child: RaisedButton(
         color: Color.fromRGBO(21, 20, 36, 1),
         splashColor: Color.fromRGBO(78, 201, 176, 0.7), //水波纹颜色
-        child: Container( 
-            height: 55,
-            child: Row(
-            mainAxisAlignment: MainAxisAlignment.start,
-            children: <Widget>[
-              Icon(Icons.wifi, size: 30, color: Color(0xff11fff3)),  
-             Text('\t\t\t\t\t\t\t'),
-              Expanded(child:Text('07/13/19\n10:34', style: TextStyle(color: Colors.white)),),
-              Expanded(child:Text("$randomdata",
-                  style: TextStyle(color: Colors.white, fontSize: 25.0)),),
-              Expanded(child:Text("\t\t$randomdata1",
-                  style: TextStyle(color: Colors.white, fontSize: 25.0)),),
-            ],
-          ),
-        ),
-              onPressed: () {
-              Navigator.of(context).push(MaterialPageRoute(
-              builder: (context) => HisDetailPage(message1: '232',message2: '153',message3: '07/13/19 10:34',)));
-              },
-             ),    
-//button：
-       RaisedButton(
-        color: Color.fromRGBO(21, 20, 36, 1),
-        splashColor: Color.fromRGBO(78, 201, 176, 0.7), //水波纹颜色
-        child: Container( 
-            height: 55,
-            child: Row(
-            mainAxisAlignment: MainAxisAlignment.start,
-            children: <Widget>[
-              Icon(Icons.wifi, size: 30, color: Color(0xff11fff3)),   
-             Text('\t\t\t\t\t\t\t'),
-              Expanded(child:Text('07/13/19\n10:34', style: TextStyle(color: Colors.white)),),
-              Expanded(child:Text("$randomdata3",
-                  style: TextStyle(color: Colors.white, fontSize: 25.0)),),
-              Expanded(child:Text("\t\t$randomdata2",
-                  style: TextStyle(color: Colors.white, fontSize: 25.0)),),
-            ],
-          ),
-        ),
-              onPressed: () {
-              Navigator.of(context).push(MaterialPageRoute(
-              builder: (context) => HisDetailPage(message1: '232',message2: '153',message3: '07/13/19 10:34',)));
-              },
-             ),    
-//button:
-       RaisedButton(
-        color: Color.fromRGBO(21, 20, 36, 1),
-        splashColor: Color.fromRGBO(78, 201, 176, 0.7), //水波纹颜色
-        child: Container( 
-            height: 55,
-            child: Row(
-            mainAxisAlignment: MainAxisAlignment.start,
-            children: <Widget>[
-              Icon(Icons.wifi, size: 30, color: Color(0xff11fff3)),   
-             Text('\t\t\t\t\t\t\t'),
-              Expanded(child:Text('07/13/19\n10:34', style: TextStyle(color: Colors.white)),),
-              Expanded(child:Text("$randomdata",
-                  style: TextStyle(color: Colors.white, fontSize: 25.0)),),
-              Expanded(child:Text("\t\t$randomdata1",
-                  style: TextStyle(color: Colors.white, fontSize: 25.0)),),
-            ],
-          ),
-        ),
-              onPressed: () {
-              Navigator.of(context).push(MaterialPageRoute(
-              builder: (context) => HisDetailPage(message1: '232',message2: '153',message3: '07/13/19 10:34',)));
-              },
-             ),    
-//button:
-       RaisedButton(
-        color: Color.fromRGBO(21, 20, 36, 1),
-        splashColor: Color.fromRGBO(78, 201, 176, 0.7), //水波纹颜色
-        child: Container( 
-            height: 55,
-            child: Row(
-            mainAxisAlignment: MainAxisAlignment.start,
-            children: <Widget>[
-              Icon(Icons.wifi, size: 30, color: Color(0xff11fff3)),  
-             Text('\t\t\t\t\t\t\t'),
-              Expanded(child:Text('07/13/19\n10:34', style: TextStyle(color: Colors.white)),),
-              Expanded(child:Text("$randomdata",
-                  style: TextStyle(color: Colors.white, fontSize: 25.0)),),
-              Expanded(child:Text("\t\t$randomdata1",
-                  style: TextStyle(color: Colors.white, fontSize: 25.0)),),
-            ],
-          ),
-        ),
-              onPressed: () {
-              Navigator.of(context).push(MaterialPageRoute(
-              builder: (context) => HisDetailPage(message1: '232',message2: '153',message3: '07/13/19 10:34',)));
-              },
-             ),   
-//button:
-       RaisedButton(
-        color: Color.fromRGBO(21, 20, 36, 1),
-        splashColor: Color.fromRGBO(78, 201, 176, 0.7), //水波纹颜色
-        child: Container( 
-            height: 55,
-            child: Row(
-            mainAxisAlignment: MainAxisAlignment.start,
-            children: <Widget>[
-              Icon(Icons.wifi, size: 30, color: Color(0xff11fff3)),   
-             Text('\t\t\t\t\t\t\t'),
-              Expanded(child:Text('07/13/19\n10:34', style: TextStyle(color: Colors.white)),),
-              Expanded(child:Text("$randomdata",
-                  style: TextStyle(color: Colors.white, fontSize: 25.0)),),
-              Expanded(child:Text("\t\t$randomdata1",
-                  style: TextStyle(color: Colors.white, fontSize: 25.0)),),
-            ],
-          ),
-        ),
-              onPressed: () {
-              Navigator.of(context).push(MaterialPageRoute(
-              builder: (context) => HisDetailPage(message1: '232',message2: '153',message3: '07/13/19 10:34',)));
-              },
-             ),    
-//button:
-       RaisedButton(
-        color: Color.fromRGBO(21, 20, 36, 1),
-        splashColor: Color.fromRGBO(78, 201, 176, 0.7), //水波纹颜色
-        child: Container( 
-            height: 55,
-            child: Row(
-            mainAxisAlignment: MainAxisAlignment.start,
-            children: <Widget>[
-              Icon(Icons.wifi, size: 30, color: Color(0xff11fff3)),  
-             Text('\t\t\t\t\t\t\t'),
-              Expanded(child:Text('07/13/19\n10:34', style: TextStyle(color: Colors.white)),),
-              Expanded(child:Text("$randomdata",
-                  style: TextStyle(color: Colors.white, fontSize: 25.0)),),
-              Expanded(child:Text("\t\t$randomdata1",
-                  style: TextStyle(color: Colors.white, fontSize: 25.0)),),
-            ],
-          ),
-        ),
-              onPressed: () {
-              Navigator.of(context).push(MaterialPageRoute(
-              builder: (context) => HisDetailPage(message1: '232',message2: '153',message3: '07/13/19 10:34',)));
-              },
-             ),    
-//button:
-      RaisedButton(
-        color: Color.fromRGBO(21, 20, 36, 1),
-        splashColor: Color.fromRGBO(78, 201, 176, 0.7), //水波纹颜色
-        child: Container( 
-            height: 55,
-            child: Row(
+        child: Container(
+          height: 50,
+          child: Row(
             mainAxisAlignment: MainAxisAlignment.start,
             children: <Widget>[
               Icon(Icons.wifi, size: 30, color: Color(0xff11fff3)),
-             Text('\t\t\t\t\t\t\t'),
-              Expanded(child:Text('07/13/19\n10:34', style: TextStyle(color: Colors.white)),),
-              Expanded(child:Text("$randomdata",
-                  style: TextStyle(color: Colors.white, fontSize: 25.0)),),
-              Expanded(child:Text("\t\t$randomdata1",
-                  style: TextStyle(color: Colors.white, fontSize: 25.0)),),
+              Text('\t\t\t\t\t\t\t'),
+              Expanded(
+                child: Text('$randomdata3',
+                    style: TextStyle(color: Colors.white)),
+              ),
+              Expanded(
+                child: Center(
+                  child: Text("$randomdata2",
+                      style: TextStyle(color: Colors.white, fontSize: 25.0)),
+                ),
+              ),
+              Expanded(
+                child: Center(
+                  child: Text("$randomdata1",
+                      style: TextStyle(color: Colors.white, fontSize: 25.0)),
+                ),
+              ),
             ],
           ),
         ),
-              onPressed: () {
-              Navigator.of(context).push(MaterialPageRoute(
-              builder: (context) => HisDetailPage(message1: '232',message2: '153',message3: '07/13/19 10:34',)));
-              },
-             ), 
-              RaisedButton(
-        color: Color.fromRGBO(21, 20, 36, 1),
-        splashColor: Color.fromRGBO(78, 201, 176, 0.7), //水波纹颜色
-        child: Container( 
-            height: 55,
-            child: Row(
-            mainAxisAlignment: MainAxisAlignment.start,
-            children: <Widget>[
-              Icon(Icons.wifi, size: 30, color: Color(0xff11fff3)),   
-             Text('\t\t\t\t\t\t\t'),
-              Expanded(child:Text('07/13/19\n10:34', style: TextStyle(color: Colors.white)),),
-              Expanded(child:Text("$randomdata2",
-                  style: TextStyle(color: Colors.white, fontSize: 25.0)),),
-              Expanded(child:Text("\t\t$randomdata3",
-                  style: TextStyle(color: Colors.white, fontSize: 25.0)),),
-            ],
-          ),
-        ),
-              onPressed: () {
-              Navigator.of(context).push(MaterialPageRoute(
-              builder: (context) => HisDetailPage(message1: '232',message2: '153',message3: '07/13/19 10:34',)));
-              },
-             ),
-              RaisedButton(
-        color: Color.fromRGBO(21, 20, 36, 1),
-        splashColor: Color.fromRGBO(78, 201, 176, 0.7), //水波纹颜色
-        child: Container( 
-            height: 55,
-            child: Row(
-            mainAxisAlignment: MainAxisAlignment.start,
-            children: <Widget>[
-              Icon(Icons.wifi, size: 30, color: Color(0xff11fff3)),   
-             Text('\t\t\t\t\t\t\t'),
-              Expanded(child:Text('07/13/19\n10:34', style: TextStyle(color: Colors.white)),),
-              Expanded(child:Text("$randomdata2",
-                  style: TextStyle(color: Colors.white, fontSize: 25.0)),),
-              Expanded(child:Text("\t\t$randomdata3",
-                  style: TextStyle(color: Colors.white, fontSize: 25.0)),),
-            ],
-          ),
-        ),
-              onPressed: () {
-              Navigator.of(context).push(MaterialPageRoute(
-              builder: (context) => HisDetailPage(message1: '232',message2: '153',message3: '07/13/19 10:34',)));
-              },
-             ),   
-          ],
-         ),     
-       ),
-      ]
-   );
+        onPressed: () {
+          Navigator.of(context).push(
+                        MaterialPageRoute(builder: (context) => HisDetailPage(message1:'$randomdata1',message2:'$randomdata2',message3:'$randomdata3')));
+        },
+      ),
+    ));
   }
+
+  return widgets;
 }
+
+
