@@ -1,106 +1,144 @@
+/*
+User:WFL;
+Date:7,23
+*/
 import 'package:flutter/material.dart';
-
-
-
-
 class HisDetailPage extends StatelessWidget {
+
   String  message1,message2,message3;//下载，上传，日期
   HisDetailPage({this.message1,this.message2,this.message3});
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+/////////////////////////////////appbar   
       appBar: AppBar(
         centerTitle: true,
         backgroundColor: Color.fromRGBO(21, 20, 36, 1),
         title: Text(
-          'SPEEDTEST',                                    ///////头标题
+          'SPEEDTEST',                                    
           style: TextStyle(
               fontWeight: FontWeight.w900,
               color: Color.fromRGBO(78, 201, 176, 1)),
         ),
       ),
-      body: Container(                                         ////////主要部分
-        margin: EdgeInsets.all(15.0),
-        child: Column(
+/////////////////////////////////////////////////////body
+body:Container(
+  margin: EdgeInsets.fromLTRB(15, 0, 15, 0),
+  /////////竖直布局////以此往下分为三个部分
+  child: Column(
+    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+    children: <Widget>[
+      /////////////第一部分-日期-download-upload
+      Column(
           children: <Widget>[
-            SizedBox(height: 10,),
-            SizedBox(width: 50,),
-            Text(
-                this.message3,                                  /////////显示日期
+            Text(//日期
+                this.message3,                                  
                 style: TextStyle(
-                    fontSize: 20.0, color: Color.fromRGBO(195, 195, 195, 1.0)),
-              ),
-            Container(                                        /////////////水分割平线
-              width: double.infinity,
-              height: 2.0,
-              color: Color.fromRGBO(195, 195, 195, 1.0),
+                    fontSize: 18.0,
+                     color: Colors.white,
+                     fontWeight: FontWeight.w900,
+                     letterSpacing: 1.7
+                    ),
             ),
-            ListTile(                                       //////////////下载图标所在行，及其组件
-              title: Text(
+            SizedBox(height: 13),
+            Container(//分割线                                      
+              width: double.infinity,
+              height: 1.0,
+              color: Color(0xff4E4F64),
+            ),
+            ListTile(//DOWNLOAD
+            contentPadding:EdgeInsets.fromLTRB(0, 8, 0, 8),
+              title:Text(
                 "DOWNLOAD",
                 style: TextStyle(
-                    fontSize: 20.0, color: Color.fromRGBO(195, 195, 195, 1.0)),
+                    fontSize: 18.0,
+                     color: Color.fromRGBO(195, 195, 195, 1.0),
+                      fontWeight: FontWeight.w900,
+                     letterSpacing: 1.7
+                ),
               ),
               leading: Icon(Icons.get_app,
-                  size: 30.0, color: Color.fromRGBO(17, 255, 243, 1.0)),
-              trailing: Text(
+                  size: 25.0, color: Color.fromRGBO(17, 255, 243, 1.0)
+              ),
+              trailing:Text(
                 this.message1,
                 style: TextStyle(
-                    fontSize: 45.0, color: Color.fromRGBO(195, 195, 195, 1.0)),
+                    fontSize: 40.0,
+                    color: Colors.white,
+                      fontWeight: FontWeight.w100,
+                ),
               ),
             ),
-            Container(                                        //////////////空行控制间距
+            Container(//分割线                                      
               width: double.infinity,
-              height: 2.0,
-              
+              height: 1.0,
+              color: Color(0xff4E4F64),
             ),
-            ListTile(                               //////////////上传图标所在行，及其组件
-              trailing: Text(
-                this.message2,
-                style: TextStyle(
-                    fontSize: 45.0, color: Color.fromRGBO(195, 195, 195, 1.0)),
-              ),
+            ListTile(//UPLOAD
+             contentPadding:EdgeInsets.fromLTRB(0, 8, 0, 8),
               title: Text(
                 "UPLOAD",
                 style: TextStyle(
-                    fontSize: 20.0, color: Color.fromRGBO(195, 195, 195, 1.0)),
+                    fontSize: 18.0,
+                     color: Color.fromRGBO(195, 195, 195, 1.0),
+                      fontWeight: FontWeight.w900,
+                     letterSpacing: 1.7
+                ),
               ),
               leading: Icon(
                 Icons.publish,
-                size: 30.0,
+                size: 25.0,
                 color: Color.fromRGBO(216, 111, 255, 1.0),
+              ),
+              trailing: Text(
+                this.message2,
+                style:  TextStyle(
+                    fontSize: 40.0,
+                    color: Colors.white,
+                    fontWeight: FontWeight.w100,
+                ),
               ),
             ),
             Container(
               width: double.infinity,
-              height: 2.0,
-              color: Color.fromRGBO(195, 195, 195, 1.0),           ////////////水分割平线
+              height: 1.0,
+              color: Color(0xff4E4F64),           ////////////水分割平线
             ),
-            Container(
-              width: double.infinity,
-              height: 20.0,                                         ///////////空行，防止图表与水分割平线相距太近
-              
-            ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-              children: <Widget>[
-                Container(                                           //////////用来存放ＰＩＮＧ的图标和数据
-                  width: 110.0,
-                  child: Center(
-                    child: Column(
+        ],
+      ),
+  /////////////第二部分-Ping-Jitter-Loss
+      Row(
+        mainAxisAlignment: MainAxisAlignment.spaceAround,
+          children: <Widget>[
+            Container(//Ping
+                  width: 90.0,
+                  alignment: Alignment(0, 0),
+                  decoration: new BoxDecoration(
+                  ),
+                 child:Column(
                       children: <Widget>[
-                        Row(children: <Widget>[
-                          Text("   "),                                ////////////////让ＰＩＮＧ图标显示居中，空格用来占位置
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: <Widget>[
                           Icon(Icons.swap_horiz,
                               size: 30.0,
-                              color: Color.fromRGBO(195, 195, 195, 1.0)),
-                          Text(" Ping",style: TextStyle(color: Colors.grey),),
-                        ]),
-                        Text(
+                              color: Colors.blue),
+                          Text(" Ping",style: TextStyle(color: Colors.grey,fontWeight: FontWeight.w900,),),
+                          ]
+                        ),
+                        SizedBox(
+                          height: 10,
+                        ),
+                        Text(//中间数字
                           "33",
                           style: TextStyle(
-                              color: Color.fromRGBO(195, 195, 195, 1.0),
-                              fontSize: 40.0),
+                              color: Colors.white,
+                              fontSize: 40.0,
+                              fontWeight: FontWeight.w100,
+                          ),
+                        ),
+                        SizedBox(
+                          height: 10,
                         ),
                         Text(
                           "ms",
@@ -109,119 +147,154 @@ class HisDetailPage extends StatelessWidget {
                               fontSize: 20.0),
                         )
                       ],
-                    ),
                   ),
-                ),
-                Container(                                                 //////////用来存放JITTY的图标和数据
-                  width: 110.0,
-                  child: Center(
-                    child: Column(
+              ),
+          Container(//Jitter
+              width: 90.0,
+              alignment: Alignment(0, 0),
+              decoration: new BoxDecoration(
+              ),
+              child: Column(
+                  children: <Widget>[
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
                       children: <Widget>[
-                        Row(children: <Widget>[
-                          Text("   "),                                    ///////////////让JITTY图标显示居中，空格用来占位置
-                          Icon(Icons.graphic_eq,
-                              size: 30.0,
-                              color: Color.fromRGBO(195, 195, 195, 1.0)),
-                          Text(" Jitter",style: TextStyle(color: Colors.grey),),
-                        ]),
-                        Text(
+                      Icon(Icons.graphic_eq,
+                          size: 30.0,
+                          color: Color(0xff11fff3)),
+                        Text(" Jitter",style: TextStyle(color: Colors.grey,fontWeight: FontWeight.w900),),
+                      ]
+                    ),
+                    SizedBox(
+                          height: 10,
+                    ),
+                    Text(//中间数字
                           "-",
                           style: TextStyle(
-                              color: Color.fromRGBO(195, 195, 195, 1.0),
-                              fontSize: 40.0),
-                        ),
-                        Text(
+                             color: Colors.white,
+                              fontSize: 40.0,
+                              fontWeight: FontWeight.w100
+                          ),
+                    ),
+                    SizedBox(
+                      height: 10,
+                    ),
+                    Text(
                           "ms",
                           style: TextStyle(
                               color: Color.fromRGBO(195, 195, 195, 1.0),
                               fontSize: 20.0),
-                        )
-                      ],
-                    ),
-                  ),
-                ),
-                Container(                                                  //////////用来存放LOSE的图标和数据
-                  width: 110.0,
-                  child: Center(
-                    child: Column(
-                      children: <Widget>[
-                        Row(children: <Widget>[
-                          Text("     "),                                       ///////////////让LOSE图标显示居中，空格用来占位置
-                          Icon(Icons.multiline_chart,
+                    )
+                  ],
+              ),
+            ),
+          Container(//Loss
+                  width: 90.0,
+                  alignment: Alignment(0, 0),
+              decoration: new BoxDecoration(
+              ),
+                child: Column(
+                  children: <Widget>[
+                    Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: <Widget>[                                      ///////////////让LOSE图标显示居中，空格用来占位置
+                      Icon(Icons.multiline_chart,
                               size: 30.0,
-                              color: Color.fromRGBO(195, 195, 195, 1.0)),
-                          Text(" Loss",style: TextStyle(color: Colors.grey),),
-                        ]),
-                        Text(
+                              color: Colors.orange),
+                          Text(" Loss",style: TextStyle(color: Colors.grey,fontWeight: FontWeight.w900),),
+                      ]
+                    ),
+                    SizedBox(
+                          height: 10,
+                    ),
+                    Text(//中间数字
                           "-",
                           style: TextStyle(
-                              color: Color.fromRGBO(195, 195, 195, 1.0),
-                              fontSize: 40.0),
-                        ),
-                        Text(
+                              color: Colors.white,
+                              fontSize: 40.0,
+                              fontWeight: FontWeight.w100
+                          ),
+                    ),
+                    SizedBox(
+                          height: 10,
+                    ),
+                    Text(
                           "%",
                           style: TextStyle(
-                              color: Color.fromRGBO(195, 195, 195, 1.0),
-                              fontSize: 20.0),
+                          color: Color.fromRGBO(195, 195, 195, 1.0),
+                          fontSize: 20.0),
                         )
                       ],
                     ),
-                  ),
                 ),
               ],
             ),
-            Container(                                         ///////////////分割上面的数据与下面数据图标的距离
-              width: double.infinity,
-              height: 10.0,
-              
-            ),
-            ListTile(                                      ///////////////显示列表中第一个图标
-              title: Text(
-                "Wifi/Data network",                          
-                style: TextStyle(
-                    fontSize: 20.0, color: Color.fromRGBO(195, 195, 195, 1.0)),
-              ),
+      /////////第三部分-TYPE-NAME-IP-LOCATION
+      Column(
+        children: <Widget>[
+            //TYPE
+            ListTile(
+              title:Text(
+                        "Type:  wifi",
+                        style: TextStyle(
+                          color: Colors.white,
+                          fontSize: 20.0,
+                          fontWeight: FontWeight.w100,
+                        ),
+                      ),
               leading: Icon(
                 Icons.filter_tilt_shift,
-                size: 50.0,
-                color: Color.fromRGBO(17, 255, 243, 1.0),
+                size: 40.0,
+               color: Color(0xff16F6F2)
               ),
             ),
-            
-            ListTile(                                           ///////////////显示列表中第二个图标
+            //NAME
+            ListTile(
               title: Text(
-                "Serve Name",
-                style: TextStyle(
-                    fontSize: 20.0, color: Color.fromRGBO(195, 195, 195, 1.0)),
-              ),
+                        "Server Name: Chinese",
+                        style: TextStyle(
+                          color: Colors.white,
+                          fontSize: 20.0,
+                          fontWeight: FontWeight.w100,
+                        ),
+                      ),
               leading: Icon(
                 Icons.donut_large,
-                size: 50.0,
-                color: Color.fromRGBO(17, 255, 243, 1.0),
+                size: 40.0,
+                color: Color(0xff16F6F2),
               ),
             ),
-            
-            ListTile(                                         ///////////////显示列表中第三个图标
+            //IP
+            ListTile(
               title: Text(
-                "192.168.1.33",
-                style: TextStyle(
-                    fontSize: 20.0, color: Color.fromRGBO(195, 195, 195, 1.0)),
-              ),
+                        "IP:  192.168.1.33",
+                        style: TextStyle(
+                          color: Colors.white,
+                          fontSize: 20.0,
+                          fontWeight: FontWeight.w100,
+                        ),
+                      ),
               leading: Icon(Icons.wifi_tethering,
-                  size: 50.0, color: Color.fromRGBO(17, 255, 243, 1.0)),
+                  size: 40.0, color: Color(0xff16F6F2)),
             ),
-            
-            ListTile(                                         ///////////////显示列表中第四个图标
+            //LOCATION
+            ListTile(
               title: Text(
-                "KaiFeng",
-                style: TextStyle(
-                    fontSize: 20.0, color: Color.fromRGBO(195, 195, 195, 1.0)),
-              ),
+                        "Location:  KaiFeng",
+                        style: TextStyle(
+                          color: Colors.white,
+                          fontSize: 20.0,
+                          fontWeight: FontWeight.w100,
+                        ),
+                      ),
               leading: Icon(Icons.place,
-                  size: 50.0, color: Color.fromRGBO(17, 255, 243, 1.0)),
+                  size: 40.0, color: Color(0xff16F6F2)),
             ),
           ],
         ),
+    /////////  
+      ],
+      ),
       ),
       backgroundColor: Color.fromRGBO(21, 20, 36, 1),
     );
