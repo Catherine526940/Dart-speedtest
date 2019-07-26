@@ -45,11 +45,9 @@ class _SettingPageState extends State<SettingPage> {
                   alignment: Alignment(0, 0),
                   decoration: new BoxDecoration(
                       border: new Border(
-                          bottom: Divider.createBorderSide(
-                    context,
-                    width: 3.0,
-                    color: Color.fromRGBO(21, 20, 36, 1)
-                  ))),
+                          bottom: Divider.createBorderSide(context,
+                              width: 3.0,
+                              color: Color.fromRGBO(21, 20, 36, 1)))),
                   child: Text(
                     "Units",
                     style: TextStyle(
@@ -80,11 +78,9 @@ class _SettingPageState extends State<SettingPage> {
                   alignment: Alignment(0, 0),
                   decoration: new BoxDecoration(
                       border: new Border(
-                          bottom: Divider.createBorderSide(
-                    context,
-                    width: 3.0,
-                    color: Color.fromRGBO(21, 20, 36, 1)
-                  ))),
+                          bottom: Divider.createBorderSide(context,
+                              width: 3.0,
+                              color: Color.fromRGBO(21, 20, 36, 1)))),
                   child: Text(
                     "MB/s",
                     style: TextStyle(
@@ -99,11 +95,9 @@ class _SettingPageState extends State<SettingPage> {
                   alignment: Alignment(0, 0),
                   decoration: new BoxDecoration(
                       border: new Border(
-                          bottom: Divider.createBorderSide(
-                    context,
-                    width: 3.0,
-                    color: Color.fromRGBO(21, 20, 36, 1)
-                  ))),
+                          bottom: Divider.createBorderSide(context,
+                              width: 3.0,
+                              color: Color.fromRGBO(21, 20, 36, 1)))),
                   child: Text(
                     "kB/s",
                     style: TextStyle(
@@ -134,11 +128,9 @@ class _SettingPageState extends State<SettingPage> {
                   alignment: Alignment(0, 0),
                   decoration: new BoxDecoration(
                       border: new Border(
-                          bottom: Divider.createBorderSide(
-                    context,
-                    width: 3.0,
-                    color: Color.fromRGBO(21, 20, 36, 1)
-                  ))),
+                          bottom: Divider.createBorderSide(context,
+                              width: 3.0,
+                              color: Color.fromRGBO(21, 20, 36, 1)))),
                   child: Text(
                     "Scale",
                     style: TextStyle(
@@ -169,11 +161,9 @@ class _SettingPageState extends State<SettingPage> {
                   alignment: Alignment(0, 0),
                   decoration: new BoxDecoration(
                       border: new Border(
-                          bottom: Divider.createBorderSide(
-                    context,
-                    width: 3.0,
-                    color: Color.fromRGBO(21, 20, 36, 1)
-                  ))),
+                          bottom: Divider.createBorderSide(context,
+                              width: 3.0,
+                              color: Color.fromRGBO(21, 20, 36, 1)))),
                   child: Text(
                     "500",
                     style: TextStyle(
@@ -188,11 +178,9 @@ class _SettingPageState extends State<SettingPage> {
                   alignment: Alignment(0, 0),
                   decoration: new BoxDecoration(
                       border: new Border(
-                          bottom: Divider.createBorderSide(
-                    context,
-                    width: 3.0,
-                    color: Color.fromRGBO(21, 20, 36, 1)
-                  ))),
+                          bottom: Divider.createBorderSide(context,
+                              width: 3.0,
+                              color: Color.fromRGBO(21, 20, 36, 1)))),
                   child: Text(
                     "1000",
                     style: TextStyle(
@@ -217,26 +205,22 @@ class _SettingPageState extends State<SettingPage> {
             color: Color.fromRGBO(21, 20, 36, 1),
             child: Row(
               mainAxisAlignment: MainAxisAlignment.start,
-              children: <Widget>[  
-                Text("ABOUT",style: TextStyle(
-                  fontSize: 20.0,
-                  fontWeight: FontWeight.w900,
-                  
-                  )
-                ),
+              children: <Widget>[
+                Text("ABOUT",
+                    style: TextStyle(
+                      fontSize: 20.0,
+                      fontWeight: FontWeight.w900,
+                    )),
                 SizedBox(height: 60)
               ],
             ),
-            onPressed: (){
-              Navigator.of(context).push(
-                MaterialPageRoute(
-                  builder: (context)=>AaboutPage()
-                )
-              );
+            onPressed: () {
+              Navigator.of(context)
+                  .push(MaterialPageRoute(builder: (context) => AaboutPage()));
             },
             textColor: Colors.white,
           ),
-  //分割线
+          //分割线
           // Container(
           //   decoration: new BoxDecoration(
           //       border: new Border(
