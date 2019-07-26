@@ -1,14 +1,9 @@
-/*
-User:WFL;
-Date:7,23
-*/
-
-
-
 import 'package:flutter/material.dart';
 
-class HisDetailPage extends StatelessWidget {
 
+
+
+class HisDetailPage extends StatelessWidget {
   String  message1,message2,message3;//下载，上传，日期
   HisDetailPage({this.message1,this.message2,this.message3});
   @override
