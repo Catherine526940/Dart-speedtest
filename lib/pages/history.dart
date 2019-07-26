@@ -42,8 +42,6 @@ class _HistoryPageState extends State<HistoryPage> {
         Text('\n'),
         // SizedBox(height: 25.0),
       ]),
-
-      
       Container(
         height: height * 2.90 / 4,
         child: ListView(children: _getListData(context)),
@@ -53,10 +51,14 @@ class _HistoryPageState extends State<HistoryPage> {
 }
 _getListData(BuildContext context) {
   List<Widget> widgets = [];
-  for (int i = 0; i < 50; i++) {
+  for (int i = 0; i <= 50; i++) {
     int randomdata1 = Random().nextInt(300);
     int randomdata2 = Random().nextInt(300);
     int randomdata3 = Random().nextInt(2019);
+    int mouth=Random().nextInt(12);
+    int day=Random().nextInt(31);
+    int hour=Random().nextInt(24);
+    int mintin=Random().nextInt(60);
     widgets.add(new Padding(
       padding: new EdgeInsets.fromLTRB(5, 0, 5, 2),
       child: RaisedButton(
@@ -70,7 +72,7 @@ _getListData(BuildContext context) {
               Icon(Icons.wifi, size: 30, color: Color(0xff11fff3)),
               Text('\t\t\t\t\t\t\t'),
               Expanded(
-                child: Text('$randomdata3',
+                child: Text('19/$mouth/$day\n  $hour:$mintin',
                     style: TextStyle(color: Colors.white)),
               ),
               Expanded(
@@ -90,7 +92,7 @@ _getListData(BuildContext context) {
         ),
         onPressed: () {
           Navigator.of(context).push(
-                        MaterialPageRoute(builder: (context) => HisDetailPage(message1:'$randomdata1',message2:'$randomdata2',message3:'$randomdata3')));
+                        MaterialPageRoute(builder: (context) => HisDetailPage(message1:'$randomdata1',message2:'$randomdata2',message3:'19/$randomdata3/$mouth/$day\n$hour:$mintin')));
         },
       ),
     ));
