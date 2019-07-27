@@ -29,12 +29,12 @@ class _HistoryPageState extends State<HistoryPage> {
         ),
         Icon(Icons.file_download, color: Color(0xff11fff3)),
         Expanded(
-          child: Text('Mbps/s',
+          child: Text('Mbps',
               style: TextStyle(color: Colors.white, fontSize: 20)),
         ),
         Icon(Icons.file_upload, color: Color(0xffd86fff)),
         Expanded(
-          child: Text('Mbps/s',
+          child: Text('Mbps',
               style: TextStyle(color: Colors.white, fontSize: 20)),
         ),
         Text('\n'),
