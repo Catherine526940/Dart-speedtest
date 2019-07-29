@@ -1,4 +1,14 @@
+/**
+ * User:wfl
+ * date:2019.7.27
+ */
+
+
+
+
 import 'package:flutter/material.dart';
+import 'DashBoard.dart';
+import 'Chart.dart';
 
 class SpeedtestPage extends StatefulWidget {
   SpeedtestPage({Key key}) : super(key: key);
@@ -113,7 +123,7 @@ class NEIBU extends StatelessWidget {
               child: Center(
                 child: Container(
                     width: 300,
-                    height: 100,
+                    height: 70,
                     child: Stack(
                       children: <Widget>[
                         //Icon
@@ -159,7 +169,7 @@ class NEIBU extends StatelessWidget {
               child: Center(
                 child: Container(
                     width: 300,
-                    height: 100,
+                    height: 70,
                     child: Stack(
                       children: <Widget>[
                         //Icon
@@ -197,7 +207,7 @@ class NEIBU extends StatelessWidget {
               child: Center(
                 child: Container(
                     width: 300,
-                    height: 100,
+                    height: 70,
                     child: Stack(
                       children: <Widget>[
                         //'|'
@@ -242,58 +252,25 @@ class NEIBU extends StatelessWidget {
           ],
         ),
 ////////////////////////////////
-        SizedBox(height: 70),
+       
         Column(
           children: <Widget>[
-            LinearProgressIndicator(
-              valueColor: AlwaysStoppedAnimation<Color>(Color.fromRGBO(78, 201, 176, 1)),
-              backgroundColor: Color(0xffC1FFC1),
-              ),
-            Padding(
-              padding: const EdgeInsets.symmetric(vertical: 5.0),
+            Container(
+              width: 450,
+              height: 120,
+              child: Chart(),
+ //////////折线图//////////////////////////             
+            ),
+            Container(
+              width: 300.0,
+              height: 300.0,
+              child: DashBoard(),
+  //////////////////////////////////////表盘//////////////////////            
             )
           ],
         ),
-        SizedBox(height: 10),
-  //////////////////row/////////////////
-        Row(
   
-          mainAxisAlignment: MainAxisAlignment.spaceAround,
-                children: <Widget>[
-//步行
-                  Icon(
-                      Icons.directions_run,
-                      size: 20.0,
-                      color: Colors.white
-                    ),
- //自行车
-                  Icon(
-                      Icons.directions_bike,
-                      size: 20.0,
-                      color: Colors.white
-                    ),
-//汽车
-                  Icon(
-                      Icons.directions_car,
-                      size: 20.0,
-                      color: Colors.white
-                    ),
-//高铁
-                  Icon(
-                      Icons.directions_railway,
-                      size: 20.0,
-                      color: Colors.white
-                    ),
-//airplane
-                    Icon(
-                      Icons.airplanemode_active,
-                      size: 20.0,
-                      color: Colors.white
-                    ),
-        ],
-       ) ,
-///////////////////////////////////retest////////////
-        SizedBox(height: 120),
+        SizedBox(height: 10),
         Row(
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
