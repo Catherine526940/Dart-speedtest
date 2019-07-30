@@ -21,7 +21,10 @@ class _GoPageState extends State<GoPage> {
               child: Container(
                 height: 200.0,
                 width: 200.0,
-                child: RaisedButton(
+                
+                child:RaisedButton(
+                  
+
                   child: Text(
                     'GO',
                     textAlign: TextAlign.center,
@@ -40,6 +43,7 @@ class _GoPageState extends State<GoPage> {
                   shape: CircleBorder(
                       side: BorderSide(color: Color.fromRGBO(21, 20, 36, 1))
                       ),
+                  //GO按钮点击触发事件
                   onPressed: () {
                     Navigator.of(context).push(
                         MaterialPageRoute(builder: (context) => SpeedtestPage()));
@@ -47,6 +51,7 @@ class _GoPageState extends State<GoPage> {
 
                   color: Color.fromRGBO(21, 20, 36, 1),
                 ),
+                
                 alignment: Alignment.center,
                 decoration: new BoxDecoration(
                     border:

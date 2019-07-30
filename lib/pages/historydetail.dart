@@ -259,7 +259,7 @@ body:Container(
                         ),
                       ),
               leading: Icon(
-                Icons.donut_large,
+                Icons.alternate_email,
                 size: 40.0,
                 color: Color(0xff16F6F2),
               ),

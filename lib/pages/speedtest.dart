@@ -31,12 +31,21 @@ class _SpeedtestPageState extends State<SpeedtestPage> {
         ),
       ),
      
-      body: Container(
-          width: 540,
-          height: 960,
-          color: Color.fromRGBO(25, 26, 47, 1),
-          child: NEIBU()),
+      body: 
+      Container(
+        
+          child:NEIBU(),
+          
+         ),
+         backgroundColor: Color.fromRGBO(25, 26, 47, 1),
     );
+  }
+}
+
+class Masd extends StatelessWidget {
+@override
+  Widget build(BuildContext context) {
+    return Column();
   }
 }
 
@@ -44,21 +53,26 @@ class NEIBU extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Column(
+      mainAxisAlignment: MainAxisAlignment.start,
       children: <Widget>[
         Row(
           mainAxisAlignment: MainAxisAlignment.spaceAround,
           children: <Widget>[
-            Row(children: <Widget>[
-              Container(
-                height: 50.0,
-                child: Icon(
+            //download
+            Container(
+              height: 30.0,
+              width: 135,
+              alignment: Alignment(0, 0),
+              decoration: new BoxDecoration(
+                  ),
+                child:Row(
+                children: <Widget>[
+                 Icon(
                   Icons.file_download,
                   color: Color(0xff0EFEF7),
                   size: 25,
                 ),
-                alignment: Alignment(0, 0),
-              ),
-              Text(
+                Text(
                 'DOWNLOAD',
                 style: TextStyle(
                   color: Colors.grey,
@@ -66,20 +80,24 @@ class NEIBU extends StatelessWidget {
                   fontWeight: FontWeight.w800,
                 ),
               ),
-            ]),
-            //upload
-            Row(
+            ]
+          ),
+        ),
+          //upload
+        Container(
+            height: 30.0,
+            width: 113,
+            alignment: Alignment.center,
+            decoration: new BoxDecoration(
+                  ),
+            child:Row(
               children: <Widget>[
-                Container(
-                  height: 50.0,
-                  child: Icon(
+                  Icon(
                     Icons.file_upload,
                     color: Color(0xffE775FF),
                     size: 25,
                   ),
-                  alignment: Alignment(0, 0),
-                ),
-                Text(
+                  Text(
                   'UPLOAD',
                   style: TextStyle(
                     color: Colors.grey,
@@ -88,7 +106,8 @@ class NEIBU extends StatelessWidget {
                   ),
                 ),
               ],
-            )
+            ),
+              ),
           ],
         ),
         //测试数据row布局
@@ -96,7 +115,7 @@ class NEIBU extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.spaceAround,
           children: <Widget>[
             Text(
-              '521',
+              '123',
               style: TextStyle(
                 color: Colors.white,
                 fontSize: 30,
@@ -104,7 +123,7 @@ class NEIBU extends StatelessWidget {
               ),
             ),
             Text(
-              '520',
+              '456',
               style: TextStyle(
                 color: Colors.white,
                 fontSize: 30,
@@ -115,179 +134,190 @@ class NEIBU extends StatelessWidget {
         ),
         ////ping-jitter-loss布局
         Row(
-          mainAxisAlignment: MainAxisAlignment.start,
+          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: <Widget>[
             //ping
-            Expanded(
-              flex: 1,
-              child: Center(
-                child: Container(
-                    width: 300,
-                    height: 70,
-                    child: Stack(
-                      children: <Widget>[
+            Row(
+              children: <Widget>[
                         //Icon
-                        Align(
-                          alignment: Alignment(-0.9, 0),
-                          child: Icon(
+                        Icon(
                             Icons.swap_horiz,
                             size: 25,
                             color: Colors.blue,
                           ),
-                        ),
+                        SizedBox(
+                               width: 5,
+                             ),
                         //text_ping
-                        Align(
-                            alignment: Alignment(-0.3, 0),
-                            child: Text(
+                          Text(
                               'Ping',
                               style:
                                   TextStyle(fontSize: 15, color: Colors.grey),
-                            )),
-                        //text_--ms
-                        Align(
-                            alignment: Alignment(0.8, 0),
-                            child: Text(
-                              '32 ms',
+                            ),
+                          SizedBox(
+                               width: 5,
+                             ),
+                        //text_--
+                          Text(
+                              '32',
                               style:
                                   TextStyle(fontSize: 15, color: Colors.white),
-                            )),
+                            ),
+                          SizedBox(
+                               width: 5,
+                             ),
+                          //text_ms 
+                          Text(
+                              'ms',
+                              style:
+                                  TextStyle(fontSize: 15, color: Colors.grey),
+                            ),
+                             
+                        
+                      ],
+                    
+                  ),
+              
+            //jitter
+            Row(
+                      children: <Widget>[
                         //'|'
-                        Align(
-                            alignment: Alignment(1, 0),
-                            child: Text(
+                         Text(
                               '|',
                               style:
                                   TextStyle(fontSize: 37, color: Colors.white),
-                            )),
-                      ],
-                    )),
-              ),
-            ),
-            //jitter
-            Expanded(
-              flex: 1,
-              child: Center(
-                child: Container(
-                    width: 300,
-                    height: 70,
-                    child: Stack(
-                      children: <Widget>[
+                            ),
+                         SizedBox(
+                               width: 5,
+                             ),
                         //Icon
-                        Align(
-                          alignment: Alignment(-0.95, 0),
-                          child: Icon(
+                         Icon(
                             Icons.graphic_eq,
                             size: 25,
                             color: Color(0xff11fff3),
                           ),
-                        ),
+                        SizedBox(
+                               width: 5,
+                             ),
                         //text_jitter
-                        Align(
-                            alignment: Alignment(-0.3, 0),
-                            child: Text(
+                             Text(
                               'Jitter',
                               style:
                                   TextStyle(fontSize: 15, color: Colors.grey),
-                            )),
-                        //text_--ms
-                        Align(
-                            alignment: Alignment(0.8, 0),
-                            child: Text(
-                              '31 ms',
+                            ),
+                        SizedBox(
+                               width: 5,
+                             ),
+                        //text_--
+                         Text(
+                              '31',
                               style:
                                   TextStyle(fontSize: 15, color: Colors.white),
-                            )),
-                      ],
-                    )),
-              ),
-            ),
-            //Loss
-            Expanded(
-              flex: 1,
-              child: Center(
-                child: Container(
-                    width: 300,
-                    height: 70,
-                    child: Stack(
-                      children: <Widget>[
+                            ),
+                        SizedBox(
+                               width: 5,
+                         ),
+                        //text_ms
+                        Text(
+                              'ms',
+                              style:
+                                  TextStyle(fontSize: 15, color: Colors.grey),
+                            ),
+                        SizedBox(
+                               width: 5,
+                             ),
                         //'|'
-                        Align(
-                            alignment: Alignment(-1, 0),
-                            child: Text(
+                        Text(
                               '|',
                               style:
                                   TextStyle(fontSize: 37, color: Colors.white),
-                            )),
+                            ),
+                        
+                      ],
+                    ),
+            ///////Loss
+            Row(
+                  children: <Widget>[
                         //Icon
-                        Align(
-                          alignment: Alignment(-0.7, 0),
-                          child: Icon(
+                        Icon(
                             Icons.multiline_chart,
                             size: 25,
                             color: Colors.orange,
                           ),
-                        ),
+                        
                         //text_Loss
-                        Align(
-                            alignment: Alignment(0, 0),
-                            child: Text(
+                        SizedBox(
+                               width: 5,
+                             ),
+                         Text(
                               'Loss',
                               style:
                                   TextStyle(fontSize: 15, color: Colors.grey),
-                            )),
-                        //text_--%
-                        Align(
-                            alignment: Alignment(0.9, 0),
-                            child: Text(
-                              '0 %',
+                            ),
+                        //text_--
+                        SizedBox(
+                               width: 5,
+                             ),
+                         Text(
+                              '0',
                               style:
                                   TextStyle(fontSize: 15, color: Colors.white),
-                            )),
-                      ],
-                    )),
+                            ),
+                            SizedBox(
+                               width: 5,
+                             ),
+                          //text_%
+                            Text(
+                              '%',
+                              style:
+                                  TextStyle(fontSize: 15, color: Colors.grey),
+                            ),
+                ],
               ),
-            ),
-
-        
           ],
         ),
-////////////////////////////////
-       
+
         Column(
           children: <Widget>[
-            Container(
-              width: 450,
-              height: 120,
-              child: Chart(),
- //////////折线图//////////////////////////             
+            SizedBox(
+              height: 1,
             ),
+////////////////////////////////////折线图
+            Container(
+
+              height: 100,
+              child: Chart(),
+            ),
+            SizedBox(
+              height: 3,
+            ),
+ ///////////////////////////////////表盘 
             Container(
               width: 300.0,
               height: 300.0,
-              child: DashBoard(),
-  //////////////////////////////////////表盘//////////////////////            
-            )
+              child: DashBoard(),        
+            ),
+            
           ],
         ),
-  
-        SizedBox(height: 10),
-        Row(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            RaisedButton(
-              child: Text("RETEST"),
-              color: Color.fromRGBO(78, 201, 176, 1),
-              textColor: Colors.white,
-              elevation: 10,
-              shape: RoundedRectangleBorder(
-                borderRadius:BorderRadius.circular(20) 
-                ),
-              onPressed: (){
-                print("retest");
-              },
-            )
-          ],
-        ),
+// ///////////////////////////////////RETEST
+//         Row(
+//           mainAxisAlignment: MainAxisAlignment.center,
+//           children: <Widget>[
+//             RaisedButton(
+//               child: Text("RETEST"),
+//               color: Color.fromRGBO(78, 201, 176, 1),
+//               textColor: Colors.white,
+//               elevation: 10,
+//               shape: RoundedRectangleBorder(
+//                 borderRadius:BorderRadius.circular(20) 
+//                 ),
+//               onPressed: (){
+//                 print("retest");
+//               },
+//             )
+//           ],
+//         ),
       ],
     );
   }
