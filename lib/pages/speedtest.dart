@@ -2,11 +2,12 @@
  * User:wfl
  * date:2019.7.27
  */
-
-
-
-
 import 'package:flutter/material.dart';
+import 'package:sqflite/sqflite.dart';
+import 'package:path/path.dart';
+import 'dart:async';
+import 'package:flutter/widgets.dart';
+import 'dart:math';
 import 'DashBoard.dart';
 import 'Chart.dart';
 
@@ -30,49 +31,104 @@ class _SpeedtestPageState extends State<SpeedtestPage> {
               color: Color.fromRGBO(78, 201, 176, 1)),
         ),
       ),
-     
-      body: 
-      Container(
-        
-          child:NEIBU(),
-          
-         ),
-         backgroundColor: Color.fromRGBO(25, 26, 47, 1),
+      body: Container(
+          width: 540,
+          height: 960,
+          color: Color.fromRGBO(25, 26, 47, 1),
+          child: NEIBU()),
     );
   }
 }
 
-class Masd extends StatelessWidget {
-@override
-  Widget build(BuildContext context) {
-    return Column();
-  }
+class NEIBU extends StatefulWidget {
+  NEIBU({Key key}) : super(key: key);
+
+  _NEIBUState createState() => _NEIBUState();
 }
 
-class NEIBU extends StatelessWidget {
+class _NEIBUState extends State<NEIBU> {
+  String _dateTime = DateTime.now().toString();
+  int info_id = 0;
+  String _dbName = 'user.db'; //数据库名称
+  int download = 0;
+  int upload = 0;
+  int length=0;
+  int suijishu1 = Random().nextInt(50);
+  int suijishu2 = Random().nextInt(50);
+  //最先加载
+  initState() {
+    super.initState();
+    _query('user.db', 'SELECT * FROM speedtest_table');
+    const period = const Duration(milliseconds: 500); //测试过程，速度调大
+    Timer.periodic(period, (timer) {
+      suijishu1 = Random().nextInt(200);
+      //到时回调
+      setState(() {
+        download = download + suijishu1;
+      });
+      if (download >= 300) {
+        //取消定时器，避免无限回调
+        timer.cancel();
+        timer = null;
+        const period = const Duration(milliseconds: 500); //测试过程，速度调大
+        Timer.periodic(period, (timer) {
+          suijishu2 = Random().nextInt(50);
+          //到时回调
+          setState(() {
+            upload = upload + suijishu2;
+          });
+          if (upload >= 300) {
+            //取消定时器，避免无限回调
+            timer.cancel();
+            timer = null;
+          }
+        });
+      }
+    });
+  }
+
+  ///增
+  _add(String dbName, String sql) async {
+    //获取数据库路径
+    var databasesPath = await getDatabasesPath();
+    String path = join(databasesPath, dbName);
+    Database db = await openDatabase(path);
+    await db.transaction((txn) async {
+      await txn.rawInsert(sql);
+    });
+    await db.close();
+    print("插入数据成功！");
+  }
+
+  //为了查条数，再次调用_query
+  _query(String dbName,String sql) async {
+    var databasesPath = await getDatabasesPath();
+    String path = join(databasesPath, dbName);
+    Database db = await openDatabase(path);
+    List<Map> list = await db.rawQuery(sql);
+    length=list.length;
+  }
+
+
+
   @override
   Widget build(BuildContext context) {
     return Column(
-      mainAxisAlignment: MainAxisAlignment.start,
       children: <Widget>[
         Row(
           mainAxisAlignment: MainAxisAlignment.spaceAround,
           children: <Widget>[
-            //download
-            Container(
-              height: 30.0,
-              width: 135,
-              alignment: Alignment(0, 0),
-              decoration: new BoxDecoration(
-                  ),
-                child:Row(
-                children: <Widget>[
-                 Icon(
+            Row(children: <Widget>[
+              Container(
+                height: 50.0,
+                child: Icon(
                   Icons.file_download,
                   color: Color(0xff0EFEF7),
                   size: 25,
                 ),
-                Text(
+                alignment: Alignment(0, 0),
+              ),
+              Text(
                 'DOWNLOAD',
                 style: TextStyle(
                   color: Colors.grey,
@@ -80,24 +136,20 @@ class NEIBU extends StatelessWidget {
                   fontWeight: FontWeight.w800,
                 ),
               ),
-            ]
-          ),
-        ),
-          //upload
-        Container(
-            height: 30.0,
-            width: 113,
-            alignment: Alignment.center,
-            decoration: new BoxDecoration(
-                  ),
-            child:Row(
+            ]),
+            //upload
+            Row(
               children: <Widget>[
-                  Icon(
+                Container(
+                  height: 50.0,
+                  child: Icon(
                     Icons.file_upload,
                     color: Color(0xffE775FF),
                     size: 25,
                   ),
-                  Text(
+                  alignment: Alignment(0, 0),
+                ),
+                Text(
                   'UPLOAD',
                   style: TextStyle(
                     color: Colors.grey,
@@ -106,8 +158,7 @@ class NEIBU extends StatelessWidget {
                   ),
                 ),
               ],
-            ),
-              ),
+            )
           ],
         ),
         //测试数据row布局
@@ -115,7 +166,7 @@ class NEIBU extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.spaceAround,
           children: <Widget>[
             Text(
-              '123',
+              '$download',
               style: TextStyle(
                 color: Colors.white,
                 fontSize: 30,
@@ -123,7 +174,7 @@ class NEIBU extends StatelessWidget {
               ),
             ),
             Text(
-              '456',
+              '$upload',
               style: TextStyle(
                 color: Colors.white,
                 fontSize: 30,
@@ -134,190 +185,186 @@ class NEIBU extends StatelessWidget {
         ),
         ////ping-jitter-loss布局
         Row(
-          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+          mainAxisAlignment: MainAxisAlignment.start,
           children: <Widget>[
             //ping
-            Row(
-              children: <Widget>[
+            Expanded(
+              flex: 1,
+              child: Center(
+                child: Container(
+                    width: 300,
+                    height: 70,
+                    child: Stack(
+                      children: <Widget>[
                         //Icon
-                        Icon(
+                        Align(
+                          alignment: Alignment(-0.9, 0),
+                          child: Icon(
                             Icons.swap_horiz,
                             size: 25,
                             color: Colors.blue,
                           ),
-                        SizedBox(
-                               width: 5,
-                             ),
+                        ),
                         //text_ping
-                          Text(
+                        Align(
+                            alignment: Alignment(-0.3, 0),
+                            child: Text(
                               'Ping',
                               style:
                                   TextStyle(fontSize: 15, color: Colors.grey),
-                            ),
-                          SizedBox(
-                               width: 5,
-                             ),
-                        //text_--
-                          Text(
-                              '32',
+                            )),
+                        //text_--ms
+                        Align(
+                            alignment: Alignment(0.8, 0),
+                            child: Text(
+                              '32 ms',
                               style:
                                   TextStyle(fontSize: 15, color: Colors.white),
-                            ),
-                          SizedBox(
-                               width: 5,
-                             ),
-                          //text_ms 
-                          Text(
-                              'ms',
-                              style:
-                                  TextStyle(fontSize: 15, color: Colors.grey),
-                            ),
-                             
-                        
-                      ],
-                    
-                  ),
-              
-            //jitter
-            Row(
-                      children: <Widget>[
+                            )),
                         //'|'
-                         Text(
+                        Align(
+                            alignment: Alignment(1, 0),
+                            child: Text(
                               '|',
                               style:
                                   TextStyle(fontSize: 37, color: Colors.white),
-                            ),
-                         SizedBox(
-                               width: 5,
-                             ),
+                            )),
+                      ],
+                    )),
+              ),
+            ),
+            //jitter
+            Expanded(
+              flex: 1,
+              child: Center(
+                child: Container(
+                    width: 300,
+                    height: 70,
+                    child: Stack(
+                      children: <Widget>[
                         //Icon
-                         Icon(
+                        Align(
+                          alignment: Alignment(-0.95, 0),
+                          child: Icon(
                             Icons.graphic_eq,
                             size: 25,
                             color: Color(0xff11fff3),
                           ),
-                        SizedBox(
-                               width: 5,
-                             ),
+                        ),
                         //text_jitter
-                             Text(
+                        Align(
+                            alignment: Alignment(-0.3, 0),
+                            child: Text(
                               'Jitter',
                               style:
                                   TextStyle(fontSize: 15, color: Colors.grey),
-                            ),
-                        SizedBox(
-                               width: 5,
-                             ),
-                        //text_--
-                         Text(
-                              '31',
+                            )),
+                        //text_--ms
+                        Align(
+                            alignment: Alignment(0.8, 0),
+                            child: Text(
+                              '31 ms',
                               style:
                                   TextStyle(fontSize: 15, color: Colors.white),
-                            ),
-                        SizedBox(
-                               width: 5,
-                         ),
-                        //text_ms
-                        Text(
-                              'ms',
-                              style:
-                                  TextStyle(fontSize: 15, color: Colors.grey),
-                            ),
-                        SizedBox(
-                               width: 5,
-                             ),
+                            )),
+                      ],
+                    )),
+              ),
+            ),
+            //Loss
+            Expanded(
+              flex: 1,
+              child: Center(
+                child: Container(
+                    width: 300,
+                    height: 70,
+                    child: Stack(
+                      children: <Widget>[
                         //'|'
-                        Text(
+                        Align(
+                            alignment: Alignment(-1, 0),
+                            child: Text(
                               '|',
                               style:
                                   TextStyle(fontSize: 37, color: Colors.white),
-                            ),
-                        
-                      ],
-                    ),
-            ///////Loss
-            Row(
-                  children: <Widget>[
+                            )),
                         //Icon
-                        Icon(
+                        Align(
+                          alignment: Alignment(-0.7, 0),
+                          child: Icon(
                             Icons.multiline_chart,
                             size: 25,
                             color: Colors.orange,
                           ),
-                        
+                        ),
                         //text_Loss
-                        SizedBox(
-                               width: 5,
-                             ),
-                         Text(
+                        Align(
+                            alignment: Alignment(0, 0),
+                            child: Text(
                               'Loss',
                               style:
                                   TextStyle(fontSize: 15, color: Colors.grey),
-                            ),
-                        //text_--
-                        SizedBox(
-                               width: 5,
-                             ),
-                         Text(
-                              '0',
+                            )),
+                        //text_--%
+                        Align(
+                            alignment: Alignment(0.9, 0),
+                            child: Text(
+                              '0 %',
                               style:
                                   TextStyle(fontSize: 15, color: Colors.white),
-                            ),
-                            SizedBox(
-                               width: 5,
-                             ),
-                          //text_%
-                            Text(
-                              '%',
-                              style:
-                                  TextStyle(fontSize: 15, color: Colors.grey),
-                            ),
-                ],
+                            )),
+                      ],
+                    )),
               ),
+            ),
           ],
         ),
+////////////////////////////////
 
         Column(
           children: <Widget>[
-            SizedBox(
-              height: 1,
-            ),
-////////////////////////////////////折线图
             Container(
-
-              height: 100,
+              width: 450,
+              height: 120,
               child: Chart(),
+              //////////折线图//////////////////////////
             ),
-            SizedBox(
-              height: 3,
-            ),
- ///////////////////////////////////表盘 
             Container(
               width: 300.0,
               height: 300.0,
-              child: DashBoard(),        
-            ),
-            
+              child: DashBoard(),
+              //////////////////////////////////////表盘//////////////////////
+            )
           ],
         ),
-// ///////////////////////////////////RETEST
-//         Row(
-//           mainAxisAlignment: MainAxisAlignment.center,
-//           children: <Widget>[
-//             RaisedButton(
-//               child: Text("RETEST"),
-//               color: Color.fromRGBO(78, 201, 176, 1),
-//               textColor: Colors.white,
-//               elevation: 10,
-//               shape: RoundedRectangleBorder(
-//                 borderRadius:BorderRadius.circular(20) 
-//                 ),
-//               onPressed: (){
-//                 print("retest");
-//               },
-//             )
-//           ],
-//         ),
+
+        Text(
+          '$_dateTime',
+          style: TextStyle(color: Colors.red),
+        ),
+        Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: <Widget>[
+            RaisedButton(
+              child: Text("INSERT"),
+              color: Color.fromRGBO(78, 201, 176, 1),
+              textColor: Colors.white,
+              elevation: 10,
+              shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(20)),
+              onPressed: () {
+                print(length);
+                info_id=length+1;
+                String sql =
+                    '''INSERT INTO speedtest_table(info_id,download_speed,upload_speed,create_time) 
+                    VALUES(${info_id++},${download},${upload},'${_dateTime}')''';
+                _add(_dbName, sql);
+                _query('user.db', 'SELECT * FROM speedtest_table');
+                print(length);
+              },
+            )
+          ],
+        ),
       ],
     );
   }
