@@ -107,6 +107,8 @@ class _NEIBUState extends State<NEIBU> {
 
   @override
   Widget build(BuildContext context) {
+    String formattedDate = DateFormat('kk:mm:ss \n     d MMM y').format(_dateTime);
+
     return Column(
       children: <Widget>[
         //最上边的icon和字母
@@ -348,7 +350,7 @@ class _NEIBUState extends State<NEIBU> {
           child: Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: <Widget>[
-              Text(DateFormat.yMd().format(_dateTime),style:TextStyle(color: Colors.white),),
+              Text(DateFormat.yMMMMd().format(_dateTime),style:TextStyle(color: Colors.white),),
               SizedBox(width: 10,),
               RaisedButton(
                 child: Text("INSERT"),
@@ -362,7 +364,7 @@ class _NEIBUState extends State<NEIBU> {
                   info_id = length + 1;
                   String sql =
                       '''INSERT INTO speedtest_table(info_id,download_speed,upload_speed,create_time) 
-                    VALUES(${info_id++},${download},${upload},'${_dateTime}')''';
+                    VALUES(${info_id++},${download},${upload},'${formattedDate}')''';
                   _add(_dbName, sql);
                   _query('user.db', 'SELECT * FROM speedtest_table');
                   print(length);

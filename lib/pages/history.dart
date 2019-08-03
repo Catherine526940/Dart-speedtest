@@ -88,13 +88,17 @@ class _HistoryPageState extends State<HistoryPage> {
 
                       //加空格调整位置
                       Text('\t\t\t\t'),
-
+                        Container(
+                            child: Text("    "),
+                        ),
                       //日期
                       Expanded(
-                        child: Text('${randomdata3[i]}',
+                        
+                        child: Text('   ${randomdata3[i]}',
                             style: TextStyle(color: Colors.white)),
                       ),
-
+                         
+                      
                       //下载
                       Expanded(
                         child: Center(
@@ -180,10 +184,14 @@ class _HistoryPageState extends State<HistoryPage> {
 
                       //加空格调整位置
                       Text('\t\t\t\t'),
+                      Container(
+                        child: Text("    "),
+                      )
+                      ,
 
                       //日期
                       Expanded(
-                        child: Text('${randomdata3[i]}',
+                        child: Text('   ${randomdata3[i]}',
                             style: TextStyle(color: Colors.white)),
                       ),
 
@@ -308,12 +316,15 @@ class _HistoryPageState extends State<HistoryPage> {
         flex: 1,
         child: Row(children: <Widget>[
           Expanded(
-            child: Text('\t\tType',
+            child: Text('   Type',
                 style: TextStyle(color: Colors.white, fontSize: 20)),
           ),
           Expanded(
-            child: Text('Date',
+            child: Text('  Date  ',
                 style: TextStyle(color: Colors.white, fontSize: 20)),
+          ),
+          Container(
+            child: Text("    "),
           ),
           Icon(Icons.file_download, color: Color(0xff11fff3)),
           Expanded(
