@@ -52,7 +52,7 @@ class _GoPageState extends State<GoPage> {
         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         children: <Widget>[
           //加个盒子调距离
-          SizedBox(height: size.height*(1/20),),
+          SizedBox(height: size.height*(1/15),),
           //go框
           Container(
             width: size.height*(1.5/5),
@@ -91,7 +91,7 @@ class _GoPageState extends State<GoPage> {
           SizedBox(height: size.height*(1/10),),
           //四行数据
           Container(
-            height: size.height*(2/5),
+            height: size.height*(1.2/5),
             padding: EdgeInsets.fromLTRB(20.0, 0.0, 0.0, 0.0),
             child: Column(
               //2个child 竖直 排列
@@ -111,7 +111,7 @@ class _GoPageState extends State<GoPage> {
                       "Type:  wifi",
                       style: TextStyle(
                         color: Colors.white,
-                        fontSize: 20.0,
+                        fontSize: 25.0,
                         fontWeight: FontWeight.w100,
                       ),
                     )
@@ -132,7 +132,7 @@ class _GoPageState extends State<GoPage> {
                       "Server Name:  chinese",
                       style: TextStyle(
                         color: Colors.white,
-                        fontSize: 20.0,
+                        fontSize: 25.0,
                         fontWeight: FontWeight.w100,
                       ),
                     )
@@ -153,7 +153,7 @@ class _GoPageState extends State<GoPage> {
                       "IP:  $ipdizhi",
                       style: TextStyle(
                         color: Colors.white,
-                        fontSize: 20.0,
+                        fontSize: 25.0,
                         fontWeight: FontWeight.w100,
                       ),
                     )
@@ -174,7 +174,7 @@ class _GoPageState extends State<GoPage> {
                       "Location:  kaifeng",
                       style: TextStyle(
                         color: Colors.white,
-                        fontSize: 20.0,
+                        fontSize: 25.0,
                         fontWeight: FontWeight.w100,
                       ),
                     )
