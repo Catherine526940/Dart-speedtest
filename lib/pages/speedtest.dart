@@ -1,7 +1,3 @@
-/**
- * User:wfl
- * date:2019.7.27
- */
 import 'package:flutter/material.dart';
 import 'package:sqflite/sqflite.dart';
 import 'package:path/path.dart';
@@ -59,25 +55,25 @@ class _NEIBUState extends State<NEIBU> {
   initState() {
     super.initState();
     _query('user.db', 'SELECT * FROM speedtest_table');
-    const period = const Duration(milliseconds: 500); //测试过程，速度调大
+    const period = const Duration(milliseconds: 600); //测试过程，速度调大
     Timer.periodic(period, (timer) {
-      suijishu1 = Random().nextInt(200);
+      suijishu1 = Random().nextInt(30);
       //到时回调
       setState(() {
         download = download + suijishu1;
       });
-      if (download >= 300) {
+      if (download >= 165) {
         //取消定时器，避免无限回调
         timer.cancel();
         timer = null;
-        const period = const Duration(milliseconds: 500); //测试过程，速度调大
+        const period = const Duration(milliseconds: 600); //测试过程，速度调大
         Timer.periodic(period, (timer) {
-          suijishu2 = Random().nextInt(50);
+          suijishu2 = Random().nextInt(30);
           //到时回调
           setState(() {
             upload = upload + suijishu2;
           });
-          if (upload >= 300) {
+          if (upload >= 165) {
             //取消定时器，避免无限回调
             timer.cancel();
             timer = null;
