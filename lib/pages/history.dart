@@ -135,7 +135,7 @@ class _HistoryPageState extends State<HistoryPage> {
               Expanded(
                 flex: 10,
                 child: Container(
-                  height: heightthr * (4.8 / 7),
+                  height: heightthr * (4.23 / 7),
                   child: ListView(children: _getListData(context)),
                 ),
               ),
