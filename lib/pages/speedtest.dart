@@ -96,9 +96,6 @@ class _NEIBUState extends State<NEIBU> {
   }
 
 
-
-
-
   //最先加载
   initState() {
     super.initState(); 
