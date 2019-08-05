@@ -139,72 +139,72 @@ class _HistoryPageState extends State<HistoryPage> {
                   child: ListView(children: _getListData(context)),
                 ),
               ),
-
+          //按钮这一部分先不要，代码没删，启封请找组长
               //按钮
-              Expanded(
-                  flex: 1,
-                  child: Container(
-                    width: widthfro,
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: <Widget>[
-                        //left的按钮
-                        Expanded(
-                          flex: 3,
-                          child: Container(
-                            height: 60,
-                            width: 150,
-                            child: RaisedButton(
-                              color: Color.fromRGBO(78, 201, 176, 1),
-                              child: Text(
-                                /* '删除数据库' */ '删除第一条',
-                                style: TextStyle(fontSize: 20, color: Colors.white),
-                              ),
-                              shape: RoundedRectangleBorder(
-                                  borderRadius: BorderRadius.all(Radius.circular(15))),
-                              onPressed: () async {
-                                _deletebyinfo_id(1);
-                                /* //删除数据库的操作
-                        var databasesPath = await getDatabasesPath();
-                        String path = join(databasesPath, 'user.db');
-                        await deleteDatabase(path);
-                        print('删除数据库成功'); */
-                              },
-                            ),
-                          ),
-                        ),
-                        //中间的间隙
-                        Expanded(
-                          flex: 1,
-                          child: SizedBox(
-                            width: 50,
-                          ),
-                        ),
-                        //right的按钮
-                        Expanded(
-                          flex: 3,
-                          child: Container(
-                            height: 60,
-                            width: 150,
-                            decoration:
-                            BoxDecoration(borderRadius: BorderRadius.circular(30)),
-                            child: RaisedButton(
-                              color: Color.fromRGBO(78, 201, 176, 1),
-                              child: Text(
-                                '删除全部数据',
-                                style: TextStyle(fontSize: 20, color: Colors.white),
-                              ),
-                              shape: RoundedRectangleBorder(
-                                  borderRadius: BorderRadius.all(Radius.circular(15))),
-                              onPressed: () {
-                                _ifdel();
-                              },
-                            ),
-                          ),
-                        )
-                      ],
-                    ),
-                  ))
+              // Expanded(
+              //     flex: 1,
+              //     child: Container(
+              //       width: widthfro,
+              //       child: Row(
+              //         mainAxisAlignment: MainAxisAlignment.center,
+              //         children: <Widget>[
+              //           //left的按钮
+              //           Expanded(
+              //             flex: 3,
+              //             child: Container(
+              //               height: 60,
+              //               width: 150,
+              //               child: RaisedButton(
+              //                 color: Color.fromRGBO(78, 201, 176, 1),
+              //                 child: Text(
+              //                   /* '删除数据库' */ '删除第一条',
+              //                   style: TextStyle(fontSize: 20, color: Colors.white),
+              //                 ),
+              //                 shape: RoundedRectangleBorder(
+              //                     borderRadius: BorderRadius.all(Radius.circular(15))),
+              //                 onPressed: () async {
+              //                   _deletebyinfo_id(1);
+              //                   /* //删除数据库的操作
+              //           var databasesPath = await getDatabasesPath();
+              //           String path = join(databasesPath, 'user.db');
+              //           await deleteDatabase(path);
+              //           print('删除数据库成功'); */
+              //                 },
+              //               ),
+              //             ),
+              //           ),
+              //           //中间的间隙
+              //           Expanded(
+              //             flex: 1,
+              //             child: SizedBox(
+              //               width: 50,
+              //             ),
+              //           ),
+              //           //right的按钮
+              //           Expanded(
+              //             flex: 3,
+              //             child: Container(
+              //               height: 60,
+              //               width: 150,
+              //               decoration:
+              //               BoxDecoration(borderRadius: BorderRadius.circular(30)),
+              //               child: RaisedButton(
+              //                 color: Color.fromRGBO(78, 201, 176, 1),
+              //                 child: Text(
+              //                   '删除全部数据',
+              //                   style: TextStyle(fontSize: 20, color: Colors.white),
+              //                 ),
+              //                 shape: RoundedRectangleBorder(
+              //                     borderRadius: BorderRadius.all(Radius.circular(15))),
+              //                 onPressed: () {
+              //                   _ifdel();
+              //                 },
+              //               ),
+              //             ),
+              //           )
+              //         ],
+              //       ),
+              //     ))
             ]))
     );
   }
