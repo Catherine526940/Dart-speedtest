@@ -46,7 +46,19 @@ class _GoPageState extends State<GoPage> {
   @override
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
-    return Container(
+    return MaterialApp(
+        home:Scaffold(
+        appBar: AppBar(
+        backgroundColor: Color.fromRGBO(21, 20, 36, 1),
+    title: Text("SPEEDTEST",
+    style: TextStyle(
+    fontWeight: FontWeight.w900,
+    color: Color.fromRGBO(78, 201, 176, 1)),),
+    centerTitle: true,
+    ),
+
+
+     body: Container(
       color: Color.fromRGBO(21, 20, 36, 0.99),
       child: Column(
         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -185,6 +197,7 @@ class _GoPageState extends State<GoPage> {
           ),
         ],
       ),
-    );
+    )
+    ));
   }
 }

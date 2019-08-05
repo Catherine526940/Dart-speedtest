@@ -7,22 +7,12 @@ import 'package:flutter/widgets.dart';
 
 class HistoryPage extends StatefulWidget {
   HistoryPage({Key key}) : super(key: key);
-
   _HistoryPageState createState() => _HistoryPageState();
+
 }
 
 class _HistoryPageState extends State<HistoryPage> {
-  bool alarm = false; //确定后删除
-  String _dbName = 'user.db'; //数据库名称
-  String sql = "DELETE FROM speedtest_table"; //无条件删除测速表数据
-  String iconk = 'wifi'; //定义一个字符改变图标
-  int length = 0; //定义一个整型常量，即时记录list的长度
-  //这三个列表为了接收数据库数据反映在屏幕上，
-  List<int> randomdata1 = [];
-  List<int> randomdata2 = [];
-  List<String> randomdata3 = [];
 
-  //写一个ifdel函数，判断是否删除表
   _ifdel() {
     if (length > 0) {
       _delete(_dbName, sql);
@@ -46,6 +36,193 @@ class _HistoryPageState extends State<HistoryPage> {
       randomdata3 = [];
     });
   }
+
+  @override
+  Widget build(BuildContext context) {
+    final size = MediaQuery.of(context).size;
+    final heightthr = size.height;
+    final widthfro = size.width;
+    return Scaffold(
+        backgroundColor: Color.fromRGBO(21, 20, 36, 1),
+        appBar: AppBar(
+          centerTitle: true,
+          backgroundColor: Color.fromRGBO(21, 20, 36, 1),
+          title: Text(
+            'SPEEDTEST',
+            style: TextStyle(fontWeight: FontWeight.w900,
+                color: Color.fromRGBO(78, 201, 176, 1)),
+          ),
+          actions: <Widget>[
+            IconButton(
+              icon: Icon(Icons.delete, size: 25.0, color: Colors.white70,),
+              onPressed: () {
+                showDialog<Null>(context: context,
+                    builder: (BuildContext context) {
+                      return new AlertDialog(
+                        backgroundColor: Color.fromRGBO(21, 20, 36, 1),
+                        title: new Text("要删除所有结果吗？",
+                          style: TextStyle(
+                              color: Colors.white70, fontSize: 25.0),),
+                        content: new SingleChildScrollView(
+                          child: new ListBody(children: <Widget>[
+                            new Text("删除结果无法撤销。",
+                              style: TextStyle(
+                                  color: Colors.white70, fontSize: 15.0),)
+                          ],),),
+                        actions: <Widget>[
+                          new FlatButton(
+                            onPressed: () {
+                              Navigator.of(context).pop();
+                            },
+                            child: new Text(
+                              "否", style: TextStyle(color: Colors.cyan),),),
+                          new FlatButton(
+                            child: new Text(
+                              "是", style: TextStyle(color: Colors.cyan),),
+                            onPressed: () {
+                              _ifdel();
+                              Navigator.of(context).pop();
+                            },
+
+                          ),
+                        ],
+
+                      );
+                    }
+                );
+              },
+            ),
+
+          ],
+
+
+        ),
+        body:Center(
+            child: Column(children: <Widget>[
+              //最上面哪一行，（title)
+              Expanded(
+                flex: 1,
+                child: Row(children: <Widget>[
+                  Expanded(
+                    child: Text('\t\tType',
+                        style: TextStyle(color: Colors.white, fontSize: 20)),
+                  ),
+                  Expanded(
+                    child: Text('Date',
+                        style: TextStyle(color: Colors.white, fontSize: 20)),
+                  ),
+                  Container(
+                    child: Text("    "),
+                  ),
+                  Icon(Icons.file_download, color: Color(0xff11fff3)),
+                  Expanded(
+                    child: Text('Mbps',
+                        style: TextStyle(color: Colors.white, fontSize: 20)),
+                  ),
+                  Icon(Icons.file_upload, color: Color(0xffd86fff)),
+                  Expanded(
+                    child: Text('Mbps',
+                        style: TextStyle(color: Colors.white, fontSize: 20)),
+                  ),
+                  Text('\n'),
+                  Text('\n'),
+                  Text('\n'),
+                  // SizedBox(height: 25.0),
+                ]),
+              ),
+
+              //列表
+              Expanded(
+                flex: 10,
+                child: Container(
+                  height: heightthr * (4.8 / 7),
+                  child: ListView(children: _getListData(context)),
+                ),
+              ),
+
+              //按钮
+              Expanded(
+                  flex: 1,
+                  child: Container(
+                    width: widthfro,
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: <Widget>[
+                        //left的按钮
+                        Expanded(
+                          flex: 3,
+                          child: Container(
+                            height: 60,
+                            width: 150,
+                            child: RaisedButton(
+                              color: Color.fromRGBO(78, 201, 176, 1),
+                              child: Text(
+                                /* '删除数据库' */ '删除第一条',
+                                style: TextStyle(fontSize: 20, color: Colors.white),
+                              ),
+                              shape: RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.all(Radius.circular(15))),
+                              onPressed: () async {
+                                _deletebyinfo_id(1);
+                                /* //删除数据库的操作
+                        var databasesPath = await getDatabasesPath();
+                        String path = join(databasesPath, 'user.db');
+                        await deleteDatabase(path);
+                        print('删除数据库成功'); */
+                              },
+                            ),
+                          ),
+                        ),
+                        //中间的间隙
+                        Expanded(
+                          flex: 1,
+                          child: SizedBox(
+                            width: 50,
+                          ),
+                        ),
+                        //right的按钮
+                        Expanded(
+                          flex: 3,
+                          child: Container(
+                            height: 60,
+                            width: 150,
+                            decoration:
+                            BoxDecoration(borderRadius: BorderRadius.circular(30)),
+                            child: RaisedButton(
+                              color: Color.fromRGBO(78, 201, 176, 1),
+                              child: Text(
+                                '删除全部数据',
+                                style: TextStyle(fontSize: 20, color: Colors.white),
+                              ),
+                              shape: RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.all(Radius.circular(15))),
+                              onPressed: () {
+                                _ifdel();
+                              },
+                            ),
+                          ),
+                        )
+                      ],
+                    ),
+                  ))
+            ]))
+    );
+  }
+
+
+
+  bool alarm = false; //确定后删除
+  String _dbName = 'user.db'; //数据库名称
+  String sql = "DELETE FROM speedtest_table"; //无条件删除测速表数据
+  String iconk = 'wifi'; //定义一个字符改变图标
+  int length = 0; //定义一个整型常量，即时记录list的长度
+  //这三个列表为了接收数据库数据反映在屏幕上，
+  List<int> randomdata1 = [];
+  List<int> randomdata2 = [];
+  List<String> randomdata3 = [];
+
+  //写一个ifdel函数，判断是否删除表
+
 
   ///查全部
   _query(String dbName, String sql) async {
@@ -88,17 +265,17 @@ class _HistoryPageState extends State<HistoryPage> {
 
                       //加空格调整位置
                       Text('\t\t\t\t'),
-                        Container(
-                            child: Text("    "),
-                        ),
+                      Container(
+                        child: Text("    "),
+                      )
+                      ,
+
                       //日期
                       Expanded(
-                        
                         child: Text('   ${randomdata3[i]}',
                             style: TextStyle(color: Colors.white)),
                       ),
-                         
-                      
+
                       //下载
                       Expanded(
                         child: Center(
@@ -186,8 +363,8 @@ class _HistoryPageState extends State<HistoryPage> {
                       Text('\t\t\t\t'),
                       Container(
                         child: Text("    "),
-                      )
-                      ,
+                      ),
+
 
                       //日期
                       Expanded(
@@ -304,119 +481,6 @@ class _HistoryPageState extends State<HistoryPage> {
     super.initState();
   }
 
-  @override
-  Widget build(BuildContext context) {
-    final size = MediaQuery.of(context).size;
-    final heightthr = size.height;
-    final widthfro = size.width;
-    return Center(
-        child: Column(children: <Widget>[
-      //最上面哪一行，（title)
-      Expanded(
-        flex: 1,
-        child: Row(children: <Widget>[
-          Expanded(
-            child: Text('   Type',
-                style: TextStyle(color: Colors.white, fontSize: 20)),
-          ),
-          Expanded(
-            child: Text('  Date  ',
-                style: TextStyle(color: Colors.white, fontSize: 20)),
-          ),
-          Container(
-            child: Text("    "),
-          ),
-          Icon(Icons.file_download, color: Color(0xff11fff3)),
-          Expanded(
-            child: Text('Mbps',
-                style: TextStyle(color: Colors.white, fontSize: 20)),
-          ),
-          Icon(Icons.file_upload, color: Color(0xffd86fff)),
-          Expanded(
-            child: Text('Mbps',
-                style: TextStyle(color: Colors.white, fontSize: 20)),
-          ),
-          Text('\n'),
-          Text('\n'),
-          Text('\n'),
-          // SizedBox(height: 25.0),
-        ]),
-      ),
 
-      //列表
-      Expanded(
-        flex: 10,
-        child: Container(
-          height: heightthr * (4.8 / 7),
-          child: ListView(children: _getListData(context)),
-        ),
-      ),
-
-      //按钮
-      Expanded(
-          flex: 1,
-          child: Container(
-            width: widthfro,
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: <Widget>[
-                //left的按钮
-                Expanded(
-                  flex: 3,
-                  child: Container(
-                    height: 60,
-                    width: 150,
-                    child: RaisedButton(
-                      color: Color.fromRGBO(78, 201, 176, 1),
-                      child: Text(
-                        /* '删除数据库' */ '删除第一条',
-                        style: TextStyle(fontSize: 20, color: Colors.white),
-                      ),
-                      shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.all(Radius.circular(15))),
-                      onPressed: () async {
-                        _deletebyinfo_id(1);
-                        /* //删除数据库的操作
-                        var databasesPath = await getDatabasesPath();
-                        String path = join(databasesPath, 'user.db');
-                        await deleteDatabase(path);
-                        print('删除数据库成功'); */
-                      },
-                    ),
-                  ),
-                ),
-                //中间的间隙
-                Expanded(
-                  flex: 1,
-                  child: SizedBox(
-                    width: 50,
-                  ),
-                ),
-                //right的按钮
-                Expanded(
-                  flex: 3,
-                  child: Container(
-                    height: 60,
-                    width: 150,
-                    decoration:
-                        BoxDecoration(borderRadius: BorderRadius.circular(30)),
-                    child: RaisedButton(
-                      color: Color.fromRGBO(78, 201, 176, 1),
-                      child: Text(
-                        '删除全部数据',
-                        style: TextStyle(fontSize: 20, color: Colors.white),
-                      ),
-                      shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.all(Radius.circular(15))),
-                      onPressed: () {
-                        _ifdel();
-                      },
-                    ),
-                  ),
-                )
-              ],
-            ),
-          ))
-    ]));
-  }
 }
+

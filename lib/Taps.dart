@@ -42,15 +42,6 @@ void _onItemTapped(int index) {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        centerTitle: true,
-          backgroundColor: Color.fromRGBO(21, 20, 36, 1),
-          title: Text(
-              'SPEEDTEST',
-              style: TextStyle(fontWeight: FontWeight.w900,color: Color.fromRGBO(78, 201, 176, 1)),
-            ),
-          ),
-
     body:new PageView.builder(
         onPageChanged: onPageChanged,
         controller: _pageController,
@@ -70,10 +61,12 @@ void _onItemTapped(int index) {
       currentIndex: this._currentIndex,
       //onTap: _onItemTapped,
       onTap: (int index){
-        setState(() {
-          print(index);
-         this._currentIndex=index; 
-        });
+        if(mounted) {
+          setState(() {
+            print(index);
+            this._currentIndex = index;
+          });
+        }
       },
       items: [
         BottomNavigationBarItem(icon: Icon(Icons.network_check,size: 30,color: Colors.grey,),title: Text('Go')),
