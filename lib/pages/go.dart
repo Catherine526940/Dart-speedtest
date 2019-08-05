@@ -6,6 +6,7 @@ import 'dart:convert';
 import 'package:myapp/main.dart';
 
 String ipdizhi;
+String type;
 main() async {
   // 内网ip
   // for (var interface in await NetworkInterface.list()) {
@@ -25,6 +26,15 @@ main() async {
       ipdizhi = match.group(0);
     });
   });
+  //判断网络类型
+  var connectivityResult = await (Connectivity().checkConnectivity());
+  if (connectivityResult == ConnectivityResult.mobile) {
+    // 网络类型为移动网
+    type = 'shuju';
+  } else if (connectivityResult == ConnectivityResult.wifi) {
+    // 网络类型为WIFI
+    type = 'wifi';
+  }
 }
 
 class GoPage extends StatefulWidget {
@@ -46,29 +56,19 @@ class _GoPageState extends State<GoPage> {
   @override
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
-    return MaterialApp(
-        home:Scaffold(
-        appBar: AppBar(
-        backgroundColor: Color.fromRGBO(21, 20, 36, 1),
-    title: Text("SPEEDTEST",
-    style: TextStyle(
-    fontWeight: FontWeight.w900,
-    color: Color.fromRGBO(78, 201, 176, 1)),),
-    centerTitle: true,
-    ),
-
-
-     body: Container(
+    return Container(
       color: Color.fromRGBO(21, 20, 36, 0.99),
       child: Column(
         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         children: <Widget>[
           //加个盒子调距离
-          SizedBox(height: size.height*(1/15),),
+          SizedBox(
+            height: size.height * (1 /20),
+          ),
           //go框
           Container(
-            width: size.height*(1.5/5),
-            height: size.height*(1.5/5),
+            width: size.height * (1.5 / 5),
+            height: size.height * (1.5 / 5),
             child: RaisedButton(
               child: Text(
                 'GO',
@@ -96,14 +96,16 @@ class _GoPageState extends State<GoPage> {
             decoration: new BoxDecoration(
                 border: new Border.all(width: 5.0, color: Color(0xff068586)),
                 color: Color.fromRGBO(21, 20, 36, 1),
-                borderRadius: BorderRadius.circular(size.height*(1.5/5)/2)),
+                borderRadius:
+                    BorderRadius.circular(size.height * (1.5 / 5) / 2)),
           ),
-
           //加个盒子调距离
-          SizedBox(height: size.height*(1/10),),
+          SizedBox(
+            height: size.height * (1 / 15),
+          ),
           //四行数据
           Container(
-            height: size.height*(1.2/5),
+            height: size.height * (1.5 / 5),
             padding: EdgeInsets.fromLTRB(20.0, 0.0, 0.0, 0.0),
             child: Column(
               //2个child 竖直 排列
@@ -116,14 +118,14 @@ class _GoPageState extends State<GoPage> {
                       child: Icon(
                         Icons.filter_tilt_shift,
                         color: Colors.white,
-                        size: 35.0,
+                        size: 33.0,
                       ),
                     ),
                     Text(
-                      "Type:  wifi",
+                      "Type:  $type",
                       style: TextStyle(
                         color: Colors.white,
-                        fontSize: 25.0,
+                        fontSize: 23.0,
                         fontWeight: FontWeight.w100,
                       ),
                     )
@@ -136,15 +138,15 @@ class _GoPageState extends State<GoPage> {
                       child: Icon(
                         Icons.alternate_email,
                         color: Colors.white,
-                        size: 35.0,
+                        size: 33.0,
                       ),
                       padding: EdgeInsets.only(right: 10.0),
                     ),
                     Text(
-                      "Server Name:  chinese",
+                      "Server Name:  Chinese",
                       style: TextStyle(
                         color: Colors.white,
-                        fontSize: 25.0,
+                        fontSize: 23.0,
                         fontWeight: FontWeight.w100,
                       ),
                     )
@@ -157,15 +159,16 @@ class _GoPageState extends State<GoPage> {
                       child: Icon(
                         Icons.wifi_tethering,
                         color: Colors.white,
-                        size: 35.0,
+                        size: 33.0,
                       ),
                       padding: EdgeInsets.only(right: 10.0),
                     ),
+            //将IP地址传过来
                     Text(
                       "IP:  $ipdizhi",
                       style: TextStyle(
                         color: Colors.white,
-                        fontSize: 25.0,
+                        fontSize: 23.0,
                         fontWeight: FontWeight.w100,
                       ),
                     )
@@ -178,7 +181,7 @@ class _GoPageState extends State<GoPage> {
                       child: Icon(
                         Icons.location_on,
                         color: Colors.white,
-                        size: 35.0,
+                        size: 33.0,
                       ),
                       padding: EdgeInsets.only(right: 10.0),
                     ),
@@ -186,7 +189,7 @@ class _GoPageState extends State<GoPage> {
                       "Location:  kaifeng",
                       style: TextStyle(
                         color: Colors.white,
-                        fontSize: 25.0,
+                        fontSize: 23.0,
                         fontWeight: FontWeight.w100,
                       ),
                     )
@@ -197,7 +200,6 @@ class _GoPageState extends State<GoPage> {
           ),
         ],
       ),
-    )
-    ));
+    );
   }
 }
