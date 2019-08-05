@@ -16,8 +16,8 @@ class MyApp extends StatefulWidget {
 class _MyAppState extends State<MyApp> {
   String _createTableSQL =
       '''CREATE TABLE speedtest_table (info_id INTEGER PRIMARY KEY, 
-        download_speed INTEGER,
-        upload_speed INTEGER,
+        download_speed DOUBLE,
+        upload_speed DOUBLE,
         create_time VARCHAR(100)
         )'''; //创建测速表;
   String _data = "暂无数据";
