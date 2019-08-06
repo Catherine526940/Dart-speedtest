@@ -25,7 +25,7 @@ void onPageChanged(int _currentIndex) {
   }
 
 
- var _pageController = new PageController(initialPage: 1);
+ var _pageController = new PageController(initialPage: 0);
   var pages = <Widget>[
     GoPage(),
     HistoryPage(),
@@ -47,8 +47,9 @@ void _onItemTapped(int index) {
         controller: _pageController,
         itemCount: pages.length,
         itemBuilder: (BuildContext context, int index) {
-          return pages.elementAt(_currentIndex);
+          return pages.elementAt(index);
         },
+        
       ),
     backgroundColor: Color.fromRGBO(21, 20, 36, 1),
 
@@ -65,6 +66,7 @@ void _onItemTapped(int index) {
           setState(() {
             print(index);
             this._currentIndex = index;
+             _pageController.animateToPage((_currentIndex),duration: Duration(milliseconds: 500),curve: Curves.ease);
           });
         }
       },
