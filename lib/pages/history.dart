@@ -131,30 +131,31 @@ class _HistoryPageState extends State<HistoryPage> {
                 ]),
               ),
 
-              //列表
-              Expanded(
+              
+             Expanded(
                 flex: 10,
                 child: Container(
                   height: heightthr * (4.23 / 7),
                   child: ListView(children: _getListData(context)),
                 ),
               ),
-              RaisedButton(
-                              color: Color.fromRGBO(78, 201, 176, 1),
-                              child: Text(
-                                '删除数据库' ,
-                                style: TextStyle(fontSize: 20, color: Colors.white),
-                              ),
-                              shape: RoundedRectangleBorder(
-                                  borderRadius: BorderRadius.all(Radius.circular(15))),
-                              onPressed: () async {
-                                //删除数据库的操作
-                        var databasesPath = await getDatabasesPath();
-                        String path = join(databasesPath, 'user.db');
-                        await deleteDatabase(path);
-                        print('删除数据库成功');
-                              },
-                            ),
+              //这是一个按钮，振朋调试所用，以后可能
+              // RaisedButton(
+              //                 color: Color.fromRGBO(78, 201, 176, 1),
+              //                 child: Text(
+              //                   '删除数据库' ,
+              //                   style: TextStyle(fontSize: 20, color: Colors.white),
+              //                 ),
+              //                 shape: RoundedRectangleBorder(
+              //                     borderRadius: BorderRadius.all(Radius.circular(15))),
+              //                 onPressed: () async {
+              //                   //删除数据库的操作
+              //           var databasesPath = await getDatabasesPath();
+              //           String path = join(databasesPath, 'user.db');
+              //           await deleteDatabase(path);
+              //           print('删除数据库成功');
+              //                 },
+              //               ),
           //按钮这一部分先不要，代码没删，启封请找组长
               //按钮
               // Expanded(
