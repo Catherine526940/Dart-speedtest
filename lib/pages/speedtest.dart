@@ -57,7 +57,7 @@ class _NEIBUState extends State<NEIBU> {
   int showtotal ;
   String location;//记录上传地址
   String downinterface =
-      'http://172.31.0.219:8080/speedtest/downloadFile?auth=Henu20'; //下载接口
+      'http://172.31.0.219:8080/speedtest/downloadFile?auth=Henu21'; //下载接口
 //获取body里面的内容
   getHttp(String url) async {
     var response = await http.post(url);
