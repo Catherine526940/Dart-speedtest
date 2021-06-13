@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'Taps.dart';
 import 'package:sqflite/sqflite.dart';
 import 'package:path/path.dart';
-
 void main(List<String> args) {
   runApp(MyApp());
 }

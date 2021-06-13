@@ -30,6 +30,7 @@ dependencies:
   http: ^0.12.0
   http_client: ^1.0.4
   flutter_screenutil: ^0.5.0
+  dart_ping: ^1.0.0
 #  fluro: ^1.4.0
 #  jpush_flutter: ^0.0.11
 #  fluttertoast: ^3.1.0
@@ -38,6 +39,11 @@ dependencies:
   
   english_words: ^3.1.0
   connectivity: ^0.4.2
+  bezier_chart: "^1.0.10"
+  flutter_chart: ^0.1.5
+  waveprogressbar_flutter: "^0.1.1"
+  wave: ^0.0.8
+
   # The following adds the Cupertino Icons font to your application.
   # Use with the CupertinoIcons class for iOS style icons.
  

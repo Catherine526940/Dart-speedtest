@@ -1,21 +1,21 @@
+import 'package:dart_ping/dart_ping.dart';
 import 'package:flutter/material.dart';
 import 'package:sqflite/sqflite.dart';
 import 'package:path/path.dart';
 import 'dart:async';
 import 'package:flutter/widgets.dart';
 import 'DashBoard.dart';
-import 'Chart.dart';
+import 'chart.dart';
 import 'package:intl/intl.dart';
 import 'package:dio/dio.dart';
 import 'dart:io';
 import 'package:path_provider/path_provider.dart';
 import 'package:http/http.dart' as http;
+import 'go.dart';
 class SpeedtestPage extends StatefulWidget {
-  SpeedtestPage({Key key}) : super(key: key);
-
+  SpeedtestPage({Key key, String string}) : super(key: key);
   _SpeedtestPageState createState() => _SpeedtestPageState();
 }
-
 class _SpeedtestPageState extends State<SpeedtestPage> {
   @override
   Widget build(BuildContext context) {
@@ -35,13 +35,13 @@ class _SpeedtestPageState extends State<SpeedtestPage> {
           height: 960,
           color: Color.fromRGBO(25, 26, 47, 1),
           child: NEIBU()),
+          
     );
   }
 }
 
 class NEIBU extends StatefulWidget {
   NEIBU({Key key}) : super(key: key);
-
   _NEIBUState createState() => _NEIBUState();
 }
 
@@ -55,9 +55,11 @@ class _NEIBUState extends State<NEIBU> {
   int length = 0;
   int point ;
   int showtotal ;
+  String pingya;
   String location;//记录上传地址
   String downinterface =
-      'http://172.31.0.219:8080/speedtest/downloadFile?auth=Henu21'; //下载接口
+      'http://172.31.0.219:8080/speedtest/downloadFile?auth=Henu21';
+//下载接口
 //获取body里面的内容
   getHttp(String url) async {
     var response = await http.post(url);
@@ -94,11 +96,21 @@ class _NEIBUState extends State<NEIBU> {
       print('downloadFile error---------$e');
     }
   }
-
-
   //最先加载
   initState() {
     super.initState(); 
+    //求ping的值：
+    Process.run('ping',['www.baidu.com']).then((result) {
+    var res=result.stdout.toString();
+    // print(res);
+    var n=res.indexOf('Average');
+    var ping=int.parse(res[n+10]+res[n+11]);
+    print(ping.toString());
+    setState(() {
+          pingya=ping.toString();
+    });
+  });
+
     _query('user.db', 'SELECT * FROM speedtest_table');
     getHttp(downinterface);
     const period = const Duration(seconds: 1); //测试过程，速度调大
@@ -117,7 +129,19 @@ class _NEIBUState extends State<NEIBU> {
       }
     });
   }
-
+ //求ping的值：
+   pingzhi() async {
+    Process.run('ping',['www.baidu.com']).then((result) {
+    var res=result.stdout.toString();
+    // print(res);
+    var n=res.indexOf('Average');
+    var ping=int.parse(res[n+10]+res[n+11]);
+    print(ping.toString());
+    setState(() {
+          pingya=ping.toString();
+    });
+  });
+}
   ///增
   _add(String dbName, String sql) async {
     //获取数据库路径
@@ -129,6 +153,7 @@ class _NEIBUState extends State<NEIBU> {
     });
     await db.close();
     print("插入数据成功！");
+     
   }
 
   //为了查条数，再次调用_query
@@ -137,13 +162,13 @@ class _NEIBUState extends State<NEIBU> {
     String path = join(databasesPath, dbName);
     Database db = await openDatabase(path);
     List<Map> list = await db.rawQuery(sql);
+    pingzhi();
     length = list.length;
   }
 
   @override
   Widget build(BuildContext context) {
     String formattedDate = DateFormat('  kk:mm:ss \n  d MMM y').format(_dateTime);
-
     return Column(
       children: <Widget>[
         //最上边的icon和字母
@@ -259,7 +284,7 @@ class _NEIBUState extends State<NEIBU> {
                           Align(
                               alignment: Alignment(0.8, 0),
                               child: Text(
-                                '32 ms',
+                                '$pingya',
                                 style: TextStyle(
                                     fontSize: 15, color: Colors.white),
                               )),
@@ -362,16 +387,14 @@ class _NEIBUState extends State<NEIBU> {
             ],
           ),
         ),
-
-        //折线图
+        //曲线图：
         Expanded(
-          flex: 3,
-          child: Center(
-            child: Chart(),
-          ),
+           flex: 2,//将3改为2
+          child: Container(
+            child:AnimPage(),
         ),
-
-        //仪表盘
+       ),
+        //仪表盘：
         Expanded(
           flex: 6,
           child: Center(

@@ -5,6 +5,7 @@ import 'dart:io';
 import 'dart:convert';
 import 'package:myapp/main.dart';
 import 'package:amap_location/amap_location.dart';
+import 'dart:ui';
 
 class GoPage extends StatefulWidget {
   GoPage({Key key}) : super(key: key);
@@ -13,39 +14,51 @@ class GoPage extends StatefulWidget {
 }
 
 class _GoPageState extends State<GoPage> {
-
   String ipdizhi;
   String type;
   String loca1;
   String loca2;
   String loca3;
+  String pingya;
   @override
   void initState() {
     super.initState();
     //测试ip刷新一下页面
-    
-    weizhi();
-      main();
-  }
 
+    weizhi();
+    main();
+  }
+  //求ping的值：
+   pingzhi() async {
+    Process.run('ping',['www.baidu.com']).then((result) {
+    var res=result.stdout.toString();
+    // print(res);
+    var n=res.indexOf('Average');
+    var ping=int.parse(res[n+10]+res[n+11]);
+    print(ping.toString());
+    setState(() {
+          pingya=ping.toString();
+    });
+  });
+}
+//位置：
   weizhi() async {
     bool open = await AMapLocationClient.startup(new AMapLocationOption(
         desiredAccuracy: CLLocationAccuracy.kCLLocationAccuracyHundredMeters));
     if (open == true) {
-      AMapLocationClient.getLocation(true).then((address){
+      AMapLocationClient.getLocation(true).then((address) {
         loca1 = address.latitude.toStringAsFixed(2);
         loca2 = address.longitude.toStringAsFixed(2);
-        loca3=address.city.toString();
+        loca3 = address.city.toString();
         print("$loca3:($loca2 ， $loca1)");
       });
     }
-     AMapLocationClient.onLocationUpate.listen((AMapLocation loc){
-      if(!mounted)return;
+    AMapLocationClient.onLocationUpate.listen((AMapLocation loc) {
+      if (!mounted) return;
       setState(() {
-         AMapLocationClient.startLocation();
+        AMapLocationClient.startLocation();
       });
     });
-    
   }
 
   main() async {
@@ -71,15 +84,18 @@ class _GoPageState extends State<GoPage> {
     var connectivityResult = await (Connectivity().checkConnectivity());
     if (connectivityResult == ConnectivityResult.mobile) {
       // 网络类型为移动网
-      type = 'shuju';
+      type = '4G';
     } else if (connectivityResult == ConnectivityResult.wifi) {
       // 网络类型为WIFI
       type = 'wifi';
     }
-    setState(() {
-
-    });
-    
+    ////////////这个是新加的，在测试阶段。
+    else if (connectivityResult == ConnectivityResult.none) {
+      // 网络未连接
+      type = 'Error';
+    }
+     pingzhi();
+    setState(() {});
   }
 
   @override
